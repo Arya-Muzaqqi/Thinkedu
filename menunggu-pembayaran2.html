@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menunggu Pembayaran - E-Wallet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #e3f2fd;
+            font-family: 'Poppins', sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #f44336;
+        }
+
+        .status {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .failed {
+            color: red;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Menunggu Pembayaran E-Wallet</h2>
+        <div class="timer" id="timer">05:00</div>
+        <button onclick="pembayaranBerhasil()">Simulasi Berhasil</button>
+        <button onclick="pembayaranGagal()">Simulasi Gagal</button>
+        <div id="statusPembayaran" class="status"></div>
+    </div>
+
+    <script>
+        let waktu = 5 * 60;
+        const timerEl = document.getElementById("timer");
+        const statusEl = document.getElementById("statusPembayaran");
+
+        const interval = setInterval(() => {
+            let menit = Math.floor(waktu / 60);
+            let detik = waktu % 60;
+            timerEl.textContent = `${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
+            waktu--;
+            if (waktu < 0) {
+                clearInterval(interval);
+                window.location.href = "gagal.html";
+            }
+        }, 1000);
+
+        function pembayaranBerhasil() {
+            clearInterval(interval);
+            window.location.href = "sukses.html";
+        }
+
+        function pembayaranGagal() {
+            clearInterval(interval);
+            window.location.href = "gagal.html";
+        }
+    </script>
+</body>
+
+</html>

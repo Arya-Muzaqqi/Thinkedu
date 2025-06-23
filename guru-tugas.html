@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas Guru - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .tugas-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tugas-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+
+        .tugas-card h3 {
+            color: #2196f3;
+            margin-bottom: 10px;
+        }
+
+        .tugas-card p {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .tugas-card .btn {
+            display: inline-block;
+            background: #2196f3;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <aside class="sidebar">
+        <h2>👨‍🏫 Guru</h2>
+        <ul>
+            <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="guru-tugas.html"><i class="fas fa-folder-open"></i> Materi & Tugas</a></li>
+            <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
+            <li><a href="guru-chat.html"><i class="fas fa-comments"></i> Chat Siswa</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Tugas Anda</h1>
+            <p>Berikut adalah daftar tugas yang telah Anda buat untuk siswa</p>
+        </header>
+
+        <section class="tugas-list" id="tugasList">
+            <!-- Daftar tugas guru -->
+        </section>
+
+        <section class="card" id="penilaianSection">
+            <h3>Penilaian Tugas Masuk</h3>
+            <div id="penilaianList">
+                <!-- Data tugas siswa akan ditampilkan -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('assets/data/data.json')
+                .then(res => res.json())
+                .then(data => {
+                    const tugasList = document.getElementById('tugasList');
+                    const penilaianList = document.getElementById('penilaianList');
+
+                    // 1. Tampilkan tugas milik Pak Budi
+                    const tugasGuru = data.tugas.filter(t => t.guru === "Pak Budi");
+                    tugasGuru.forEach(t => {
+                        const card = document.createElement('div');
+                        card.className = 'tugas-card';
+                        card.innerHTML = `
+          <h3>${t.judul}</h3>
+          <p>Kelas: ${t.kelas}</p>
+          <p>Deadline: ${t.deadline}</p>
+          <a href="#" class="btn">Lihat Detail</a>
+        `;
+                        tugasList.appendChild(card);
+                    });
+
+                    // 2. Simulasi: Tampilkan tugas masuk dari siswa
+                    // (ambil dari data.users + data.poin jika aktivitas = Mengumpulkan tugas)
+                    const penilaianMasuk = data.poin.filter(p => p.aktivitas === "Mengumpulkan tugas");
+
+                    penilaianMasuk.forEach((item, index) => {
+                        const siswa = data.users.find(u => u.id === item.userId);
+                        const row = document.createElement('div');
+                        row.style.marginBottom = "15px";
+                        row.innerHTML = `
+          <strong>${siswa.nama}</strong> - ${item.aktivitas}<br>
+          <label for="nilai-${index}">Nilai:</label>
+          <input type="number" id="nilai-${index}" min="0" max="100" placeholder="Masukkan nilai" style="margin-top:4px; padding:6px; width: 120px;">
+          <span id="output-${index}" style="margin-left: 10px; font-weight: bold;"></span>
+        `;
+
+                        penilaianList.appendChild(row);
+
+                        document.getElementById(`nilai-${index}`).addEventListener("input", function () {
+                            document.getElementById(`output-${index}`).textContent = "✓ Tersimpan: " + this.value;
+                        });
+                    });
+                })
+                .catch(err => {
+                    console.error("Gagal memuat data:", err);
+                });
+        });
+    </script>
+
+
+</body>
+
+</html>

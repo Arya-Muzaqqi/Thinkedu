@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Loyalty Reward - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .reward-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .reward-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .reward-card {
+            flex: 1 1 220px;
+            background: #f5faff;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-card h3 {
+            margin: 0 0 8px;
+            color: #2196f3;
+        }
+
+        .reward-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>⚙️ Admin</h2>
+        <ul>
+            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Konten -->
+    <main class="content">
+        <header>
+            <h1>Loyalty Reward</h1>
+            <p>Daftar reward yang bisa ditukar dengan poin oleh siswa aktif</p>
+        </header>
+
+        <section class="reward-box">
+            <div class="reward-list" id="rewardList">
+                <!-- Data reward akan dimuat di sini -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        fetch('assets/data/data.json')
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('rewardList');
+                if (!data.reward || data.reward.length === 0) {
+                    list.innerHTML = "<p>Belum ada reward tersedia.</p>";
+                    return;
+                }
+
+                data.reward.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "reward-card";
+                    div.innerHTML = `
+            <h3>${item.nama}</h3>
+            <p>🎯 Poin dibutuhkan: <strong>${item.poin}</strong></p>
+          `;
+                    list.appendChild(div);
+                });
+            })
+            .catch(err => {
+                console.error("Gagal memuat reward:", err);
+            });
+    </script>
+
+</body>
+
+</html>

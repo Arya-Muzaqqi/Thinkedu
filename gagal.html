@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pembayaran Gagal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #ffebee;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h2 {
+            color: #f44336;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #pesanTerimaKasih {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>❌ Pembayaran Gagal</h2>
+        <p>Waktu pembayaran telah habis atau terjadi kesalahan.</p>
+        <button onclick="window.location.href='pembayaran.html'">Kembali ke Pembayaran</button>
+        <button onclick="keluar()">Keluar</button>
+        <div id="pesanTerimaKasih">Terima kasih telah mengunjungi Thinkedu 🙏</div>
+    </div>
+
+    <script>
+        function keluar() {
+            document.getElementById("pesanTerimaKasih").style.display = "block";
+        }
+    </script>
+</body>
+
+</html>

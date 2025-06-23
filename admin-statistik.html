@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Statistik Sistem - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .bar-chart {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            height: 200px;
+            margin-top: 30px;
+        }
+
+        .bar {
+            width: 60px;
+            background: #2196f3;
+            color: black;
+            text-align: center;
+            padding-top: 5px;
+            border-radius: 6px 6px 0 0;
+        }
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>⚙️ Admin</h2>
+        <ul>
+            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Konten -->
+    <main class="content">
+        <header>
+            <h1>Statistik Sistem</h1>
+            <p>Ringkasan data pengguna dan aktivitas</p>
+        </header>
+
+        <section class="stat-box" id="ringkasanStatistik">
+            <p><strong>Jumlah Siswa:</strong> ...</p>
+            <p><strong>Jumlah Guru:</strong> ...</p>
+            <p><strong>Total Buku:</strong> ...</p>
+            <p><strong>Reward Aktif:</strong> ...</p>
+            <p><strong>Total Poin Semua Siswa:</strong> ...</p>
+        </section>
+
+        <section class="stat-box">
+            <h3>Grafik Poin Siswa</h3>
+            <div class="bar-chart" id="grafikPoin">
+                <!-- Bar siswa akan muncul di sini -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        fetch('assets/data/data.json')
+            .then(res => res.json())
+            .then(data => {
+                const box = document.getElementById("ringkasanStatistik");
+                const totalSiswa = data.users.filter(u => u.role === "siswa").length;
+                const totalGuru = data.users.filter(u => u.role === "guru").length;
+                const totalBuku = data.buku.length;
+                const totalReward = data.reward.length;
+                const totalPoin = data.poin.reduce((acc, p) => acc + p.jumlah, 0);
+
+                box.innerHTML = `
+          <p><strong>Jumlah Siswa:</strong> ${totalSiswa}</p>
+          <p><strong>Jumlah Guru:</strong> ${totalGuru}</p>
+          <p><strong>Total Buku:</strong> ${totalBuku}</p>
+          <p><strong>Reward Aktif:</strong> ${totalReward}</p>
+          <p><strong>Total Poin Semua Siswa:</strong> ${totalPoin}</p>
+        `;
+
+                // Grafik Poin per siswa
+                const grafik = document.getElementById("grafikPoin");
+                data.poin.forEach(p => {
+                    const user = data.users.find(u => u.id === p.userId);
+                    const tinggi = Math.min(p.jumlah, 100); // max tinggi bar 100%
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = `${tinggi * 1.5}px`;
+                    bar.innerHTML = `<small>${p.jumlah}</small><br>${user.nama}`;
+                    grafik.appendChild(bar);
+                });
+            })
+            .catch(err => console.error("Gagal memuat statistik:", err));
+    </script>
+
+</body>
+
+</html>

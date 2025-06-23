@@ -1,0 +1,187 @@
+/* RESET & GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #e3f2fd;
+    color: #333;
+}
+
+/* DASHBOARD LAYOUT */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR PUTIH */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    padding: 30px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    color: #2196f3;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 18px 0;
+}
+
+.sidebar a {
+    color: #2196f3;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #1976d2;
+}
+
+/* MAIN CONTENT KANAN */
+.content {
+    margin-left: 240px;
+    flex-grow: 1;
+    padding: 40px;
+    background: #e3f2fd;
+}
+
+/* HEADER */
+header h1 {
+    color: #0d47a1;
+    margin-bottom: 10px;
+}
+
+header p {
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* CARDS */
+.overview,
+.kelas-grid,
+.jadwal-list,
+.tugas-list,
+.buku-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card,
+.kelas-card,
+.jadwal-card,
+.tugas-card,
+.buku-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: 0.3s ease;
+}
+
+.card h3,
+.kelas-card h3,
+.jadwal-card h3,
+.tugas-card h3,
+.buku-card h3 {
+    color: #2196f3;
+    margin-bottom: 10px;
+}
+
+.card p,
+.kelas-card p,
+.jadwal-card p,
+.tugas-card p,
+.buku-card p {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.btn-detail {
+    display: inline-block;
+    margin-top: 10px;
+    background: #2196f3;
+    color: white;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-detail:hover {
+    background: #1976d2;
+}
+
+.belum {
+    color: red;
+    font-weight: bold;
+}
+
+.selesai {
+    color: green;
+    font-weight: bold;
+}
+
+.progress-container {
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 30px;
+    background: #4caf50;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px;
+}
+
+.bar-chart {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    height: 150px;
+    margin-top: 20px;
+}
+
+.bar {
+    width: 60px;
+    background: #4caf50;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.card input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}

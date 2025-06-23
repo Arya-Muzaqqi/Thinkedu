@@ -1,0 +1,83 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "role": "siswa",
+            "nama": "Hanni",
+            "email": "Hanni@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "role": "guru",
+            "nama": "Pak Budi",
+            "email": "budi@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 3,
+            "role": "admin",
+            "nama": "Admin Thinkedu",
+            "email": "admin@thinkedu.com",
+            "password": "123456"
+        }
+    ],
+    "tugas": [
+        {
+            "id": 1,
+            "judul": "Matematika Dasar",
+            "guru": "Pak Budi",
+            "kelas": "Kelas 10",
+            "deadline": "2025-06-10"
+        }
+    ],
+    "poin": [
+        {
+            "userId": 1,
+            "aktivitas": "Mengumpulkan tugas",
+            "jumlah": 10
+        }
+    ],
+    "buku": [
+        {
+            "id": 1,
+            "judul": "Logika Matematika",
+            "kategori": "Matematika",
+            "upload_by": "admin",
+            "format": "PDF"
+        }
+    ],
+    "reward": [
+        {
+            "id": 1,
+            "nama": "Voucher",
+            "poin": 100
+        }
+    ],
+    "messages": [
+        {
+            "from": "siswa",
+            "to": "Pak Budi",
+            "kelas": "Matematika",
+            "nama": "Hanni",
+            "pesan": "Pak, saya bingung nomor 3.",
+            "waktu": "2025-06-01 15:00"
+        },
+        {
+            "from": "guru",
+            "to": "siswa",
+            "kelas": "Matematika",
+            "nama": "Pak Budi",
+            "pesan": "Gunakan rumus luas segitiga ya.",
+            "waktu": "2025-06-01 15:02"
+        },
+        {
+            "from": "siswa",
+            "to": "Pak Tono",
+            "kelas": "Fisika",
+            "nama": "Hanni",
+            "pesan": "Pak, hukum Newton yang ke-2 maksudnya?",
+            "waktu": "2025-06-01 16:00"
+        }
+    ]
+}

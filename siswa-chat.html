@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Guru - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .select-wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        select,
+        .chat-form input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .chat-message {
+            margin: 12px 0;
+        }
+
+        .chat-message.me {
+            text-align: right;
+        }
+
+        .chat-message .bubble {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: #e0f7fa;
+            max-width: 70%;
+        }
+
+        .chat-message.me .bubble {
+            background: #2196f3;
+            color: white;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-form input {
+            flex: 1;
+        }
+
+        .chat-form button {
+            padding: 10px 14px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <aside class="sidebar">
+        <h2>🎓 Thinkedu</h2>
+        <ul>
+            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></ </ul>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Chat Guru</h1>
+            <p>Pilih guru & mata pelajaran terlebih dahulu</p>
+        </header>
+
+        <section class="select-wrapper">
+            <label for="guruSelect">Pilih Guru:</label>
+            <select id="guruSelect">
+                <option value="">-- Pilih Guru --</option>
+                <option value="Bu Ria|Matematika">Bu Budi - Matematika</option>
+                <option value="Pak Budi|Fisika">Pak Tono - Fisika</option>
+                <option value="Bu Lestari|Kimia">Bu Lestari - Kimia</option>
+            </select>
+        </section>
+
+        <section id="chatSection" style="display: none;">
+            <div class="chat-box" id="chatBox"></div>
+
+            <form class="chat-form" id="chatForm">
+                <input type="text" id="messageInput" placeholder="Tulis pesan..." required>
+                <button type="submit">Kirim</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const guruSelect = document.getElementById("guruSelect");
+        const chatBox = document.getElementById("chatBox");
+        const chatForm = document.getElementById("chatForm");
+        const messageInput = document.getElementById("messageInput");
+        const chatSection = document.getElementById("chatSection");
+
+        let selectedGuru = "";
+        let selectedMapel = "";
+
+        guruSelect.addEventListener("change", () => {
+            const val = guruSelect.value;
+            if (val) {
+                [selectedGuru, selectedMapel] = val.split("|");
+                chatSection.style.display = "block";
+                loadChat();
+            } else {
+                chatSection.style.display = "none";
+                chatBox.innerHTML = "";
+            }
+        });
+
+        function loadChat() {
+            fetch('assets/data/chat.json')
+                .then(res => res.json())
+                .then(data => {
+                    chatBox.innerHTML = '';
+                    data.messages
+                        .filter(msg => msg.to === selectedGuru && msg.kelas === selectedMapel)
+                        .forEach(msg => {
+                            const div = document.createElement('div');
+                            div.className = 'chat-message ' + (msg.from === 'siswa' ? 'me' : 'them');
+                            div.innerHTML = `<div class="bubble">${msg.pesan}</div>`;
+                            chatBox.appendChild(div);
+                        });
+                });
+        }
+
+        chatForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const pesan = messageInput.value.trim();
+            if (!pesan) return;
+
+            const div = document.createElement('div');
+            div.className = 'chat-message me';
+            div.innerHTML = `<div class="bubble">${pesan}</div>`;
+            chatBox.appendChild(div);
+
+            messageInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+    </script>
+</body>
+
+</html>

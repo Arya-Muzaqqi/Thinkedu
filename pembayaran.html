@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pembayaran - Thinkedu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #e3f2fd;
+            font-family: 'Poppins', sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2196f3;
+            margin-bottom: 20px;
+        }
+
+        label,
+        select,
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Metode Pembayaran</h2>
+        <div id="errorMessage" class="error"></div>
+
+        <label for="metode">Pilih Metode:</label>
+        <select id="metode" onchange="tampilkanForm()">
+            <option value="">-- Pilih Metode Pembayaran --</option>
+            <option value="qris">QRIS</option>
+            <option value="ewallet">E-Wallet</option>
+        </select>
+
+        <div id="formEwallet" class="hidden">
+            <label for="jenis">Jenis E-Wallet:</label>
+            <select id="jenis">
+                <option value="">-- Pilih Jenis E-Wallet --</option>
+                <option value="DANA">DANA</option>
+                <option value="GOPAY">GOPAY</option>
+                <option value="OVO">OVO</option>
+            </select>
+            <label for="nomor">Nomor E-Wallet:</label>
+            <input type="tel" id="nomor" placeholder="08xxxxxxxxxx">
+        </div>
+
+        <button onclick="prosesPembayaran()">Konfirmasi Pembayaran</button>
+    </div>
+
+    <script>
+        function tampilkanForm() {
+            const metode = document.getElementById("metode").value;
+            document.getElementById("formEwallet").classList.toggle("hidden", metode !== "ewallet");
+        }
+
+        function prosesPembayaran() {
+            const metode = document.getElementById("metode").value;
+            const jenis = document.getElementById("jenis").value;
+            const nomor = document.getElementById("nomor").value.trim();
+            const errorDiv = document.getElementById("errorMessage");
+
+            errorDiv.textContent = "";
+
+            if (!metode) {
+                errorDiv.textContent = "Silakan pilih opsi pembayaran terlebih dahulu.";
+                return;
+            }
+
+            if (metode === "ewallet") {
+                if (!jenis && !nomor) {
+                    errorDiv.textContent = "Silakan pilih jenis E-Wallet dan isi nomor.";
+                    return;
+                } else if (!jenis) {
+                    errorDiv.textContent = "Silakan pilih jenis E-Wallet yang digunakan.";
+                    return;
+                } else if (!nomor) {
+                    errorDiv.textContent = "Silakan isi nomor E-Wallet.";
+                    return;
+                }
+            }
+
+            // Simpan data dan redirect sesuai metode
+            localStorage.setItem("metodePembayaran", metode);
+            localStorage.setItem("jenisEwallet", jenis);
+            localStorage.setItem("nomorEwallet", nomor);
+
+            if (metode === "qris") {
+                window.location.href = "menunggu-pembayaran.html";
+            } else {
+                window.location.href = "menunggu-pembayaran2.html";
+            }
+        }
+    </script>
+</body>
+
+</html>
