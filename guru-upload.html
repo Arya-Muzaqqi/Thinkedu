@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Tugas - Thinkedu</title>
+    <title>Upload Materi - Thinkedu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -19,7 +19,7 @@
             width: 250px;
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
-            box-shadow: 8px 0 25px rgba(0, 0, 0, 1);
+            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .sidebar img.logo {
@@ -51,58 +51,51 @@
         .content {
             flex: 1;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.9);
             min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
         }
 
         .content h2 {
+            margin-top: 0;
             color: #2196f3;
-            margin-bottom: 20px;
         }
 
-        .tugas-item {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .tugas-item h3 {
-            margin: 0 0 10px;
-        }
-
-        .tugas-item p {
-            margin: 5px 0;
-        }
-
-        .tugas-item button {
-            margin-right: 10px;
+        .upload-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
             background: #2196f3;
             color: white;
             border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
             cursor: pointer;
         }
 
-        .tambah-btn {
-            background: #4caf50;
-            color: white;
-            border: none;
-            padding: 10px 16px;
+        .list-materi {
+            margin-top: 30px;
+        }
+
+        .materi-item {
+            background: #fff;
+            padding: 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            cursor: pointer;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.2s;
         }
 
-        .tugas-item {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .materi-item:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.01);
         }
 
-        .tugas-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        .materi-item h4 {
+            margin: 0;
         }
     </style>
 </head>
@@ -110,12 +103,12 @@
 <body>
     <aside class="sidebar">
         <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
-        <h2><span style="font-size: 14px;">🧑‍🏫</span> <span style="color: #2196f3;">Guru</span></h2>
+        <h2>👨‍🏫 Guru</h2>
         <ul>
             <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="guru-profil.html"><i class="fas fa-user"></i> Profil</a></li>
-            <li><a href="guru-upload.html"><i class="fas fa-upload"></i> Materi</a></li>
-            <li><a href="guru-tugas.html" class="active"><i class="fas fa-file-alt"></i> Tugas</a></li>
+            <li><a href="guru-upload.html" class="active"><i class="fas fa-upload"></i> Materi</a></li>
+            <li><a href="guru-tugas.html"><i class="fas fa-file-alt"></i> Tugas</a></li>
             <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
             <li><a href="guru-penilaian.html"><i class="fas fa-check-circle"></i> Penilaian</a></li>
             <li><a href="guru-chat.html"><i class="fas fa-comments"></i> Chat Siswa</a></li>
@@ -124,28 +117,26 @@
     </aside>
 
     <main class="content">
-        <h2>Daftar Tugas</h2>
-        <button class="tambah-btn" onclick="window.location.href='guru-tambah-tugas.html'">+ Tambah Tugas</button>
-        <div id="listTugas"></div>
+        <h2>Materi yang Telah Diunggah</h2>
+        <button class="upload-btn" onclick="window.location.href='guru-upload2.html'">+</button>
+        <div class="list-materi" id="daftarMateri"></div>
     </main>
 
     <script>
         fetch('assets/data/data.json')
             .then(res => res.json())
             .then(data => {
-                const list = document.getElementById('listTugas');
-                data.tugas.forEach(tugas => {
-                    const div = document.createElement('div');
-                    div.className = 'tugas-item';
-                    div.innerHTML = `
-            <h3>${tugas.judul}</h3>
-            <p><strong>Kelas:</strong> ${tugas.kelas}</p>
-            <p><strong>Guru:</strong> ${tugas.guru}</p>
-            <p><strong>Deadline:</strong> ${tugas.deadline}</p>
-            <button onclick="alert('Edit tugas ID ${tugas.id} (mockup)')">Edit</button>
-            <button onclick="alert('Hapus tugas ID ${tugas.id} (mockup)')">Hapus</button>
+                const daftar = document.getElementById('daftarMateri');
+                data.materi.forEach(m => {
+                    const item = document.createElement('div');
+                    item.className = 'materi-item';
+                    item.innerHTML = `
+            <h4>${m.judul} - ${m.kelas}</h4>
+            <p>${m.subbab} | ${m.mapel}</p>
+            <p><strong>File:</strong> ${m.file}</p>
+            <button onclick="window.location.href='guru-edit-materi.html?id=${m.id}'">Edit</button>
           `;
-                    list.appendChild(div);
+                    daftar.appendChild(item);
                 });
             });
     </script>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Materi Baru - Thinkedu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar img.logo {
+            width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #2196f3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        <h2>👨‍🏫 Guru</h2>
+        <ul>
+            <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="guru-profil.html"><i class="fas fa-user"></i> Profil</a></li>
+            <li><a href="guru-upload.html" class="active"><i class="fas fa-upload"></i> Materi</a></li>
+            <li><a href="guru-tugas.html"><i class="fas fa-file-alt"></i> Tugas</a></li>
+            <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
+            <li><a href="guru-penilaian.html"><i class="fas fa-check-circle"></i> Penilaian</a></li>
+            <li><a href="guru-chat.html"><i class="fas fa-comments"></i> Chat Siswa</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <form id="uploadForm">
+            <h2>Upload Materi Baru</h2>
+            <label>Judul Materi</label>
+            <input type="text" id="judul" required>
+
+            <label>Sub-bab Materi</label>
+            <input type="text" id="subbab" required>
+
+            <label>Pilih Kelas</label>
+            <select id="kelas" required>
+                <option value="">-- Pilih Kelas --</option>
+                <optgroup label="SD">
+                    <option>SD Kelas 1</option>
+                    <option>SD Kelas 2</option>
+                    <option>SD Kelas 3</option>
+                    <option>SD Kelas 4</option>
+                    <option>SD Kelas 5</option>
+                    <option>SD Kelas 6</option>
+                </optgroup>
+                <optgroup label="SMP">
+                    <option>SMP Kelas 7</option>
+                    <option>SMP Kelas 8</option>
+                    <option>SMP Kelas 9</option>
+                </optgroup>
+                <optgroup label="SMA">
+                    <option>SMA Kelas 10</option>
+                    <option>SMA Kelas 11</option>
+                    <option>SMA Kelas 12</option>
+                </optgroup>
+            </select>
+
+            <label>Mata Pelajaran</label>
+            <input type="text" id="mapel" required>
+
+            <label>File Materi</label>
+            <input type="file" id="file" accept=".pdf,.ppt,.pptx,.mp4" required>
+
+            <button type="submit">Upload</button>
+            <div class="success" id="successMsg"></div>
+            <div class="error" id="errorMsg"></div>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const judul = document.getElementById("judul").value.trim();
+            const subbab = document.getElementById("subbab").value.trim();
+            const kelas = document.getElementById("kelas").value;
+            const mapel = document.getElementById("mapel").value.trim();
+            const file = document.getElementById("file").value.trim();
+            const successMsg = document.getElementById("successMsg");
+            const errorMsg = document.getElementById("errorMsg");
+
+            successMsg.textContent = "";
+            errorMsg.textContent = "";
+
+            if (!judul || !subbab || !kelas || !mapel || !file) {
+                errorMsg.textContent = "Harap lengkapi semua field.";
+                return;
+            }
+
+            successMsg.textContent = "Materi berhasil diupload.";
+        });
+    </script>
+</body>
+
+</html>

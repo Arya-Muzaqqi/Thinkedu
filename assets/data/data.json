@@ -12,6 +12,7 @@
             "role": "guru",
             "nama": "Pak Budi",
             "email": "budi@gmail.com",
+            "telepon": "08131313798",
             "password": "123456"
         },
         {
@@ -78,6 +79,26 @@
             "nama": "Hanni",
             "pesan": "Pak, hukum Newton yang ke-2 maksudnya?",
             "waktu": "2025-06-01 16:00"
+        }
+    ],
+    "materi": [
+        {
+            "id": 1,
+            "judul": "Persamaan Linear",
+            "subbab": "Persamaan Satu Variabel",
+            "kelas": "SMP Kelas 7",
+            "mapel": "Matematika",
+            "file": "persamaan-linear.pdf",
+            "guru": "Pak Budi"
+        },
+        {
+            "id": 2,
+            "judul": "Reaksi Kimia",
+            "subbab": "Pengantar Reaksi",
+            "kelas": "SMA Kelas 10",
+            "mapel": "Kimia",
+            "file": "reaksi-kimia.ppt",
+            "guru": "Pak Budi"
         }
     ]
 }
