@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Jadwal Mengajar - Thinkedu</title>
+    <title>Gagal Tambah Jadwal - Thinkedu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -52,53 +52,34 @@
             flex: 1;
             padding: 40px;
             background-color: rgba(255, 255, 255, 0.95);
-            min-height: 100vh;
-        }
-
-        .top-bar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
         }
 
-        .top-bar h2 {
-            color: #2196f3;
+        h1 {
+            font-size: 28px;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
         }
 
         .btn {
             background: #2196f3;
             color: white;
-            padding: 10px 16px;
-            border: none;
+            padding: 10px 20px;
             border-radius: 8px;
+            border: none;
             text-decoration: none;
             font-weight: 500;
-        }
-
-        .jadwal-list {
-            margin-top: 30px;
-        }
-
-        .jadwal-item {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
-        }
-
-        .jadwal-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .jadwal-item h3 {
-            margin: 0 0 10px;
-        }
-
-        .jadwal-item p {
-            margin: 5px 0;
         }
     </style>
 </head>
@@ -120,20 +101,11 @@
     </aside>
 
     <main class="content">
-        <div class="top-bar">
-            <h2>Jadwal Mengajar</h2>
-            <a href="guru-tambah-jadwal.html" class="btn">+ Tambah Jadwal</a>
-        </div>
-
-        <div class="jadwal-list">
-            <div class="jadwal-item">
-                <h3>Senin</h3>
-                <p><strong>Jam:</strong> 10:00 - 11:30</p>
-                <p><strong>Kelas:</strong> SMA Kelas 10</p>
-                <p><strong>Mata Pelajaran:</strong> Matematika</p>
-                <p><strong>Topik:</strong> Fungsi Kuadrat</p>
-            </div>
-        </div>
+        <h1>Gagal Menambahkan Jadwal</h1>
+        <h3>Jadwal yang Anda pilih bentrok dengan jadwal lainnya.</h3>
+        <p>Silakan periksa kembali hari dan jam yang dipilih agar tidak terjadi tabrakan dengan jadwal yang sudah ada.
+        </p>
+        <a href="guru-tambah-jadwal.html" class="btn">Kembali ke Form Jadwal</a>
     </main>
 </body>
 

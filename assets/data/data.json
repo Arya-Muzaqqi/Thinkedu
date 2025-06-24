@@ -5,7 +5,8 @@
             "role": "siswa",
             "nama": "Hanni",
             "email": "Hanni@gmail.com",
-            "password": "123456"
+            "password": "123456",
+            "kelas": "SMA Kelas 12"
         },
         {
             "id": 2,
@@ -21,6 +22,30 @@
             "nama": "Admin Thinkedu",
             "email": "admin@thinkedu.com",
             "password": "123456"
+        },
+        {
+            "id": 4,
+            "role": "siswa",
+            "nama": "Haerin",
+            "kelas": "SMA Kelas 12"
+        },
+        {
+            "id": 5,
+            "role": "siswa",
+            "nama": "Minji",
+            "kelas": "SMA Kelas 12"
+        },
+        {
+            "id": 6,
+            "role": "siswa",
+            "nama": "Hyein",
+            "kelas": "SMA Kelas 12"
+        },
+        {
+            "id": 7,
+            "role": "siswa",
+            "nama": "Danielle",
+            "kelas": "SMA Kelas 12"
         }
     ],
     "tugas": [
@@ -106,6 +131,28 @@
             "mapel": "Kimia",
             "file": "reaksi-kimia.ppt",
             "guru": "Pak Budi"
+        }
+    ],
+    "jadwal": [
+        {
+            "id": 1,
+            "hari": "Senin",
+            "jam": "10:00 - 11:30",
+            "kelas": "SMA Kelas 10",
+            "mapel": "Matematika",
+            "topik": "Fungsi Kuadrat",
+            "guru": "Pak Budi"
+        }
+    ],
+    "penilaian": [
+        {
+            "siswa": "Hanni",
+            "tugas": "Hukum Newton 1 - 3",
+            "kelas": "SMA Kelas 12",
+            "file": "tugas-hanni.pdf",
+            "tanggal": "2025-06-25",
+            "jam": "09:00",
+            "nilai": 90
         }
     ]
 }
