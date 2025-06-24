@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Tugas - Thinkedu</title>
+    <title>Materi Diupload - Thinkedu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -65,21 +65,11 @@
             color: #2196f3;
         }
 
-        .btn {
-            background: #2196f3;
-            color: white;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .tugas-list {
+        .materi-list {
             margin-top: 30px;
         }
 
-        .tugas-item {
+        .materi-item {
             background: white;
             border-radius: 10px;
             padding: 20px;
@@ -88,20 +78,20 @@
             transition: transform 0.2s ease;
         }
 
-        .tugas-item:hover {
+        .materi-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .tugas-item h3 {
+        .materi-item h3 {
             margin: 0 0 10px;
         }
 
-        .tugas-item p {
+        .materi-item p {
             margin: 5px 0;
         }
 
-        .tugas-item button {
+        .materi-item button {
             margin-top: 10px;
             background: #2196f3;
             color: white;
@@ -109,6 +99,16 @@
             padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
+        }
+
+        .btn {
+            background: #2196f3;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -131,24 +131,37 @@
 
     <main class="content">
         <div class="top-bar">
-            <h2>Daftar Tugas</h2>
-            <a href="guru-tambah-tugas.html" class="btn">+ Tambah Tugas</a>
+            <h2>Materi Telah Diunggah</h2>
+            <a href="guru-upload2.html" class="btn">+ Tambah Materi</a>
         </div>
 
-        <div class="tugas-list">
-            <div class="tugas-item">
-                <h3>Perkalian 2 digit</h3>
+        <div class="materi-list">
+            <!-- Materi awal dari data.json -->
+            <div class="materi-item">
+                <h3>Persamaan Linear</h3>
+                <p><strong>Sub-bab:</strong> Persamaan Satu Variabel</p>
+                <p><strong>Kelas:</strong> SMP Kelas 7</p>
+                <p><strong>Mata Pelajaran:</strong> Matematika</p>
+                <p><strong>File:</strong> persamaan-linear.pdf</p>
+                <button onclick="window.location.href='guru-edit-materi.html?id=1'">Edit Materi</button>
+            </div>
+            <div class="materi-item">
+                <h3>Reaksi Kimia</h3>
+                <p><strong>Sub-bab:</strong> Pengantar Reaksi</p>
+                <p><strong>Kelas:</strong> SMA Kelas 10</p>
+                <p><strong>Mata Pelajaran:</strong> Kimia</p>
+                <p><strong>File:</strong> reaksi-kimia.ppt</p>
+                <button onclick="window.location.href='guru-edit-materi.html?id=2'">Edit Materi</button>
+            </div>
+
+            <!-- Materi baru hasil upload -->
+            <div class="materi-item">
+                <h3>Matematika Dasar</h3>
+                <p><strong>Sub-bab:</strong> Perkalian dasar</p>
                 <p><strong>Kelas:</strong> SD Kelas 3</p>
                 <p><strong>Mata Pelajaran:</strong> Matematika</p>
-                <p><strong>Deadline:</strong> 2025-06-10</p>
-                <button onclick="window.location.href='guru-edit-tugas.html?id=1'">Edit Tugas</button>
-            </div>
-            <div class="tugas-item">
-                <h3>Hukum Newton 1 - 3</h3>
-                <p><strong>Kelas:</strong> SMA Kelas 12</p>
-                <p><strong>Mata Pelajaran:</strong> Fisika</p>
-                <p><strong>Deadline:</strong> 2025-06-26</p>
-                <button onclick="window.location.href='guru-edit-tugas.html?id=2'">Edit Tugas</button>
+                <p><strong>File:</strong> Perkalian.mp4</p>
+                <button onclick="window.location.href='guru-edit-materi.html?id=999'">Edit Materi</button>
             </div>
         </div>
     </main>

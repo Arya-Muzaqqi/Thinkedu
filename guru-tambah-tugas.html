@@ -50,21 +50,21 @@
 
         .content {
             flex: 1;
-            padding: 40px;
-            background-color: rgba(255, 255, 255, 0.95);
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
             min-height: 100vh;
         }
 
         form {
-            max-width: 600px;
-            width: 100%;
             background: white;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
         }
 
         h2 {
@@ -97,20 +97,11 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+            margin-bottom: 10px;
         }
 
-        .success,
-        .error {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .success {
-            color: green;
-        }
-
-        .error {
-            color: red;
+        .error-btn {
+            background: red;
         }
     </style>
 </head>
@@ -132,63 +123,51 @@
     </aside>
 
     <main class="content">
-        <form id="tambahTugasForm">
-            <h2>Tambah Tugas</h2>
+        <form id="tugasForm">
+            <h2>Tambah Tugas Baru</h2>
 
             <label>Judul Tugas</label>
-            <input type="text" id="judul">
+            <input type="text" id="judul" value="Aljabar">
 
             <label>Kelas</label>
             <select id="kelas">
-                <option value="">Pilih Kelas</option>
-                <option>SD Kelas 1</option>
-                <option>SD Kelas 2</option>
-                <option>SD Kelas 3</option>
-                <option>SD Kelas 4</option>
-                <option>SD Kelas 5</option>
-                <option>SD Kelas 6</option>
-                <option>SMP Kelas 7</option>
-                <option>SMP Kelas 8</option>
-                <option>SMP Kelas 9</option>
-                <option>SMA Kelas 10</option>
-                <option>SMA Kelas 11</option>
-                <option>SMA Kelas 12</option>
+                <optgroup label="SD">
+                    <option>SD Kelas 1</option>
+                    <option>SD Kelas 2</option>
+                    <option>SD Kelas 3</option>
+                    <option>SD Kelas 4</option>
+                    <option>SD Kelas 5</option>
+                    <option>SD Kelas 6</option>
+                </optgroup>
+                <optgroup label="SMP">
+                    <option>SMP Kelas 7</option>
+                    <option selected>SMP Kelas 8</option>
+                    <option>SMP Kelas 9</option>
+                </optgroup>
+                <optgroup label="SMA">
+                    <option>SMA Kelas 10</option>
+                    <option>SMA Kelas 11</option>
+                    <option>SMA Kelas 12</option>
+                </optgroup>
             </select>
 
             <label>Mata Pelajaran</label>
-            <input type="text" id="mapel">
+            <input type="text" id="mapel" value="Matematika">
 
             <label>Deadline</label>
-            <input type="date" id="deadline">
+            <input type="date" id="deadline" value="2025-06-30">
 
-            <label>File Pendukung (opsional)</label>
-            <input type="file" id="file">
-
-            <button type="submit">Kirim Tugas</button>
-            <div class="success" id="successMsg"></div>
-            <div class="error" id="errorMsg"></div>
+            <button type="submit">Simulasi Berhasil</button>
+            <button type="button" class="error-btn"
+                onclick="window.location.href='guru-tambah-tugas-gagal.html'">Simulasi Gagal</button>
         </form>
     </main>
 
     <script>
-        document.getElementById("tambahTugasForm").addEventListener("submit", function (e) {
+        document.getElementById("tugasForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            const judul = document.getElementById("judul").value.trim();
-            const kelas = document.getElementById("kelas").value;
-            const mapel = document.getElementById("mapel").value.trim();
-            const deadline = document.getElementById("deadline").value;
-
-            const success = document.getElementById("successMsg");
-            const error = document.getElementById("errorMsg");
-            success.textContent = "";
-            error.textContent = "";
-
-            if (!judul || !kelas || !mapel || !deadline) {
-                error.textContent = "Harap lengkapi semua data sebelum mengirim tugas.";
-                return;
-            }
-
-            success.textContent = "Tugas berhasil ditambahkan.";
+            alert("Tugas berhasil ditambahkan (simulasi).");
+            window.location.href = "guru-tambah-tugas-sukses.html";
         });
     </script>
 </body>

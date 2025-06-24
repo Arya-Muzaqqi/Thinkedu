@@ -19,7 +19,7 @@
             width: 250px;
             background: rgba(255, 255, 255, 0.95);
             padding: 20px;
-            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 0 25px rgba(0, 0, 0, 1);
         }
 
         .sidebar img.logo {
@@ -51,51 +51,63 @@
         .content {
             flex: 1;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             min-height: 100vh;
-            box-sizing: border-box;
-            position: relative;
         }
 
-        .content h2 {
-            margin-top: 0;
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar h2 {
             color: #2196f3;
         }
 
-        .upload-btn {
-            position: absolute;
-            top: 40px;
-            right: 40px;
+        .top-bar .btn {
             background: #2196f3;
             color: white;
+            padding: 10px 16px;
             border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 24px;
-            cursor: pointer;
+            border-radius: 8px;
+            text-decoration: none;
         }
 
-        .list-materi {
+        .materi-list {
             margin-top: 30px;
         }
 
         .materi-item {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, background-color 0.2s;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
         }
 
         .materi-item:hover {
-            background-color: #e3f2fd;
-            transform: scale(1.01);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .materi-item h4 {
-            margin: 0;
+        .materi-item h3 {
+            margin: 0 0 10px;
+        }
+
+        .materi-item p {
+            margin: 5px 0;
+        }
+
+        .materi-item button {
+            margin-top: 10px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -103,11 +115,11 @@
 <body>
     <aside class="sidebar">
         <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
-        <h2>👨‍🏫 Guru</h2>
+        <h2>🧑‍🏫 <span style="color:#2196f3">Guru</span></h2>
         <ul>
             <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="guru-profil.html"><i class="fas fa-user"></i> Profil</a></li>
-            <li><a href="guru-upload.html" class="active"><i class="fas fa-upload"></i> Materi</a></li>
+            <li><a href="guru-upload.html"><i class="fas fa-upload"></i> Materi</a></li>
             <li><a href="guru-tugas.html"><i class="fas fa-file-alt"></i> Tugas</a></li>
             <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
             <li><a href="guru-penilaian.html"><i class="fas fa-check-circle"></i> Penilaian</a></li>
@@ -117,26 +129,52 @@
     </aside>
 
     <main class="content">
-        <h2>Materi yang Telah Diunggah</h2>
-        <button class="upload-btn" onclick="window.location.href='guru-upload2.html'">+</button>
-        <div class="list-materi" id="daftarMateri"></div>
+        <div class="top-bar">
+            <h2>Materi Yang Pernah Diunggah</h2>
+            <a href="guru-upload2.html" class="btn">+ Tambah Materi</a>
+        </div>
+
+        <div class="materi-list" id="materiList"></div>
     </main>
 
     <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const uploaded = getQueryParam("uploaded");
+        const materiList = document.getElementById("materiList");
+
         fetch('assets/data/data.json')
             .then(res => res.json())
             .then(data => {
-                const daftar = document.getElementById('daftarMateri');
-                data.materi.forEach(m => {
-                    const item = document.createElement('div');
-                    item.className = 'materi-item';
-                    item.innerHTML = `
-            <h4>${m.judul} - ${m.kelas}</h4>
-            <p>${m.subbab} | ${m.mapel}</p>
-            <p><strong>File:</strong> ${m.file}</p>
-            <button onclick="window.location.href='guru-edit-materi.html?id=${m.id}'">Edit</button>
+                let list = data.materi;
+
+                if (uploaded === "1") {
+                    list.push({
+                        id: Date.now(),
+                        judul: "Matematika Dasar",
+                        subbab: "Perkalian dasar",
+                        kelas: "SD Kelas 3",
+                        mapel: "Matematika",
+                        file: "Perkalian.mp4",
+                        guru: "Pak Budi"
+                    });
+                }
+
+                list.forEach(materi => {
+                    const div = document.createElement("div");
+                    div.className = "materi-item";
+                    div.innerHTML = `
+            <h3>${materi.judul}</h3>
+            <p><strong>Sub-bab:</strong> ${materi.subbab}</p>
+            <p><strong>Kelas:</strong> ${materi.kelas}</p>
+            <p><strong>Mata Pelajaran:</strong> ${materi.mapel}</p>
+            <p><strong>File:</strong> ${materi.file}</p>
+            <button onclick="window.location.href='guru-edit-materi.html?id=${materi.id}'">Edit Materi</button>
           `;
-                    daftar.appendChild(item);
+                    materiList.appendChild(div);
                 });
             });
     </script>
