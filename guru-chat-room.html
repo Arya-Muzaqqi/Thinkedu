@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat dengan Siswa - Thinkedu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 8px 0 25px rgba(0, 0, 0, 1);
+        }
+
+        .sidebar img.logo {
+            width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+        }
+
+        .chat-header {
+            margin-bottom: 20px;
+        }
+
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+        }
+
+        .bubble {
+            max-width: 60%;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 20px;
+            position: relative;
+            clear: both;
+        }
+
+        .bubble.siswa {
+            background: #f1f1f1;
+            float: left;
+        }
+
+        .bubble.guru {
+            background: #2196f3;
+            color: white;
+            float: right;
+        }
+
+        .chat-input {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-input button {
+            padding: 12px 20px;
+            background: #2196f3;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .popup-error {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #c62828;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        <h2>🧑‍🏫 <span style="color:#2196f3">Guru</span></h2>
+        <ul>
+            <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="guru-profil.html"><i class="fas fa-user"></i> Profil</a></li>
+            <li><a href="guru-upload.html"><i class="fas fa-upload"></i> Materi</a></li>
+            <li><a href="guru-tugas.html"><i class="fas fa-file-alt"></i> Tugas</a></li>
+            <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
+            <li><a href="guru-penilaian.html"><i class="fas fa-check-circle"></i> Penilaian</a></li>
+            <li><a href="guru-chat.html"><i class="fas fa-comments"></i> Chat Siswa</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <div class="chat-header">
+            <h2>Chat dengan <span id="namaSiswa">Siswa</span> - <span id="mapel">Mata Pelajaran</span></h2>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="bubble siswa">Pak, saya bingung nomor 3.</div>
+            <div class="bubble guru">Gunakan rumus luas segitiga ya.</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="pesanGuru" placeholder="Ketik pesan...">
+            <button onclick="kirimPesan()">Kirim</button>
+            <button style="background: red;" onclick="tampilGagal()">Simulasi Gagal</button>
+        </div>
+    </main>
+
+    <div class="popup-error" id="popupError">
+        ❌ Gagal mengirim pesan.<br>Periksa koneksi internet Anda.
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const siswa = urlParams.get("siswa") || "Siswa";
+        const kelas = urlParams.get("kelas") || "Mapel";
+        document.getElementById("namaSiswa").textContent = siswa;
+        document.getElementById("mapel").textContent = kelas;
+
+        function kirimPesan() {
+            const pesan = document.getElementById("pesanGuru").value.trim();
+            if (!pesan) return;
+
+            const bubble = document.createElement("div");
+            bubble.className = "bubble guru";
+            bubble.textContent = pesan;
+            document.getElementById("chatBox").appendChild(bubble);
+            document.getElementById("pesanGuru").value = "";
+            document.getElementById("chatBox").scrollTop = document.getElementById("chatBox").scrollHeight;
+        }
+
+        function tampilGagal() {
+            const popup = document.getElementById("popupError");
+            popup.style.display = "block";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -4,152 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat Siswa - Thinkedu</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .chat-wrapper {
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 8px 0 25px rgba(0, 0, 0, 1);
+        }
+
+        .sidebar img.logo {
+            width: 150px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #2196f3;
+        }
+
+        .chat-list {
+            margin-top: 30px;
+        }
+
+        .chat-item {
             background: white;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .chat-box {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .chat-message {
-            margin: 10px 0;
-        }
-
-        .chat-message.them {
-            text-align: left;
-        }
-
-        .chat-message.me {
-            text-align: right;
-        }
-
-        .bubble {
-            display: inline-block;
-            padding: 10px 14px;
-            border-radius: 16px;
-            max-width: 70%;
-        }
-
-        .me .bubble {
-            background: #2196f3;
-            color: white;
-        }
-
-        .them .bubble {
-            background: #e0f7fa;
-        }
-
-        .chat-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-form input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        .chat-form button {
-            padding: 10px 14px;
-            background: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background: #f0faff;
+            transform: translateY(-2px);
+        }
+
+        .chat-item h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .chat-item p {
+            margin: 5px 0 0;
+            color: #555;
+            font-size: 14px;
         }
     </style>
 </head>
 
-<body class="dashboard">
-
-    <!-- Sidebar -->
+<body>
     <aside class="sidebar">
-        <h2>👨‍🏫 Guru</h2>
+        <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        <h2>🧑‍🏫 <span style="color:#2196f3">Guru</span></h2>
         <ul>
             <li><a href="dashboard-guru.html"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="guru-tugas.html"><i class="fas fa-folder-open"></i> Materi & Tugas</a></li>
+            <li><a href="guru-profil.html"><i class="fas fa-user"></i> Profil</a></li>
+            <li><a href="guru-upload.html"><i class="fas fa-upload"></i> Materi</a></li>
+            <li><a href="guru-tugas.html"><i class="fas fa-file-alt"></i> Tugas</a></li>
             <li><a href="guru-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal Mengajar</a></li>
+            <li><a href="guru-penilaian.html"><i class="fas fa-check-circle"></i> Penilaian</a></li>
             <li><a href="guru-chat.html"><i class="fas fa-comments"></i> Chat Siswa</a></li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>
 
-    <!-- Konten -->
     <main class="content">
-        <header>
-            <h1>Chat Masuk dari Siswa</h1>
-            <p>Guru: Pak Budi - Kelas Matematika</p>
-        </header>
-
-        <section class="chat-wrapper">
-            <div class="chat-box" id="chatBox">
-                <!-- Percakapan akan dimuat di sini -->
+        <h2>Daftar Chat Masuk</h2>
+        <div class="chat-list">
+            <div class="chat-item" onclick="window.location.href='guru-chat-room.html?siswa=Hanni&kelas=Matematika'">
+                <h3>Hanni</h3>
+                <p>Matematika • "Pak, saya bingung nomor 3."</p>
+                <p style="font-size: 12px; color: gray;">2025-06-01 15:00</p>
             </div>
-
-            <form class="chat-form" id="chatForm">
-                <input type="text" id="replyInput" placeholder="Ketik balasan..." required>
-                <button type="submit">Kirim</button>
-            </form>
-        </section>
+            <div class="chat-item" onclick="window.location.href='guru-chat-room.html?siswa=Haerin&kelas=Fisika'">
+                <h3>Haerin</h3>
+                <p>Fisika • "Pak, hukum Newton ke-2 maksudnya?"</p>
+                <p style="font-size: 12px; color: gray;">2025-06-01 16:00</p>
+            </div>
+            <div class="chat-item" onclick="window.location.href='guru-chat-room.html?siswa=Minji&kelas=Biologi'">
+                <h3>Minji</h3>
+                <p>Biologi • "Saya sudah upload tugasnya pak."</p>
+                <p style="font-size: 12px; color: gray;">2025-06-02 08:30</p>
+            </div>
+            <div class="chat-item" onclick="window.location.href='guru-chat-room.html?siswa=Hyein&kelas=Kimia'">
+                <h3>Hyein</h3>
+                <p>Kimia • "Untuk soal nomer 5 itu pakai rumus apa ya pak?"</p>
+                <p style="font-size: 12px; color: gray;">2025-06-02 10:15</p>
+            </div>
+            <div class="chat-item" onclick="window.location.href='guru-chat-room.html?siswa=Danielle&kelas=Fisika'">
+                <h3>Danielle</h3>
+                <p>Fisika • "Saya tidak mengerti grafik percepatan."</p>
+                <p style="font-size: 12px; color: gray;">2025-06-02 14:20</p>
+            </div>
+        </div>
     </main>
-
-    <script>
-        const chatBox = document.getElementById("chatBox");
-        const chatForm = document.getElementById("chatForm");
-        const replyInput = document.getElementById("replyInput");
-
-        let currentKelas = "Matematika";
-        let currentGuru = "Pak Budi";
-
-        function loadChat() {
-            fetch('assets/data/data.json')
-                .then(res => res.json())
-                .then(data => {
-                    chatBox.innerHTML = '';
-                    const messages = data.messages.filter(
-                        m => m.kelas === currentKelas && (m.from === "siswa" || (m.from === "guru" && m.nama === currentGuru))
-                    );
-
-                    messages.forEach(msg => {
-                        const div = document.createElement('div');
-                        div.className = 'chat-message ' + (msg.from === "guru" ? 'me' : 'them');
-                        div.innerHTML = `<div class="bubble">${msg.pesan}</div>`;
-                        chatBox.appendChild(div);
-                    });
-
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                });
-        }
-
-        chatForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const pesan = replyInput.value.trim();
-            if (!pesan) return;
-
-            const div = document.createElement('div');
-            div.className = 'chat-message me';
-            div.innerHTML = `<div class="bubble">${pesan}</div>`;
-            chatBox.appendChild(div);
-
-            replyInput.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-        });
-
-        loadChat();
-    </script>
-
 </body>
 
 </html>
