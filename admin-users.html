@@ -2,115 +2,250 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Manajemen User - Thinkedu</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        .table-box {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Manajemen User - Thinkedu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('assets/images/background.png') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
+    .dashboard main.content {
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      min-height: 100vh;
+    }
 
-        th,
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
+    .table-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
 
-        th {
-            background: #f1f1f1;
-            color: #333;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
 
-        .badge {
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            color: white;
-        }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
 
-        .siswa {
-            background: #4caf50;
-        }
+    th {
+      background: #f1f1f1;
+      color: #333;
+    }
 
-        .guru {
-            background: #2196f3;
-        }
+    .badge {
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: white;
+    }
 
-        .admin {
-            background: #ff9800;
-        }
-    </style>
+    .siswa { background: #4caf50; }
+    .guru  { background: #2196f3; }
+    .admin { background: #ff9800; }
+
+    .aktif { background: #4caf50; }
+    .nonaktif { background: #f44336; }
+
+    .btn {
+      padding: 6px 10px;
+      font-size: 13px;
+      margin-right: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-edit {
+      background: #2196f3;
+      color: white;
+    }
+
+    .btn-toggle {
+      background: #9e9e9e;
+      color: white;
+    }
+
+    .btn-nonaktif {
+      background: #f44336;
+      color: white;
+    }
+
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .edit-form {
+      background: #fff;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+    }
+
+    .edit-form input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .edit-form input[disabled] {
+      background-color: #f1f1f1;
+    }
+  </style>
 </head>
 
 <body class="dashboard">
 
-    <aside class="sidebar">
-        <h2>⚙️ Admin</h2>
-        <ul>
-            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
-            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
-            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
-            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </aside>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>⚙️ Admin</h2>
+    <ul>
+      <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+      <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+      <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+      <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+      <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
 
-    <main class="content">
-        <header>
-            <h1>Manajemen Pengguna</h1>
-            <p>Daftar lengkap siswa, guru, dan admin dalam sistem</p>
-        </header>
+  <!-- Main Content -->
+  <main class="content">
+    <header>
+      <h1>Manajemen Pengguna</h1>
+      <p>Kelola data siswa, guru, dan admin yang terdaftar dalam sistem</p>
+    </header>
 
-        <section class="table-box">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody id="userTable">
-                    <!-- Data pengguna akan dimuat dengan JS -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <!-- Tabel Data -->
+    <section class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="userTable"></tbody>
+      </table>
+    </section>
 
-    <script>
-        fetch('assets/data/data.json')
-            .then(res => res.json())
-            .then(data => {
-                const userTable = document.getElementById('userTable');
-                data.users.forEach(user => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
+    <!-- Form Edit -->
+    <section class="edit-form hidden" id="editForm">
+      <h3>Edit Data Pengguna</h3>
+      <input type="text" id="editNama" placeholder="Nama">
+      <input type="email" id="editEmail" placeholder="Email">
+      <input type="text" id="editRole" disabled>
+      <button class="btn btn-edit" onclick="saveEdit()">Simpan Perubahan</button>
+    </section>
+
+    <!-- Notifikasi Popup -->
+    <div class="popup" id="popupNotif"></div>
+  </main>
+
+  <script>
+    let users = [
+      { nama: "Ria Juliana", email: "ria@mail.com", role: "siswa", aktif: true },
+      { nama: "Budi Santoso", email: "budi@mail.com", role: "guru", aktif: true },
+      { nama: "Admin Thinkedu", email: "admin@mail.com", role: "admin", aktif: true },
+      { nama: "Salma Novinda", email: "salmanov@mail.com", role: "siswa", aktif: false }
+    ];
+
+    let editIndex = -1;
+
+    function renderTable() {
+      const tbody = document.getElementById("userTable");
+      tbody.innerHTML = "";
+      users.forEach((user, index) => {
+        const roleClass = user.role.toLowerCase();
+        const statusClass = user.aktif ? "aktif" : "nonaktif";
+        const roleLabel = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+        const toggleLabel = user.aktif ? "Nonaktifkan" : "Aktifkan";
+        const toggleClass = user.aktif ? "btn-nonaktif" : "btn-edit";
+        const statusLabel = user.aktif ? "Aktif" : "Nonaktif";
+
+        tbody.innerHTML += `
+          <tr>
             <td>${user.nama}</td>
             <td>${user.email}</td>
-            <td><span class="badge ${user.role}">${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span></td>
-          `;
-                    userTable.appendChild(tr);
-                });
-            })
-            .catch(err => {
-                console.error("Gagal memuat user:", err);
-            });
-    </script>
+            <td><span class="badge ${roleClass}">${roleLabel}</span></td>
+            <td><span class="badge ${statusClass}">${statusLabel}</span></td>
+            <td>
+              <button class="btn btn-edit" onclick="editUser(${index})">Edit</button>
+              <button class="btn ${toggleClass}" onclick="toggleStatus(${index})">${toggleLabel}</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function editUser(index) {
+      editIndex = index;
+      const user = users[index];
+      document.getElementById("editNama").value = user.nama;
+      document.getElementById("editEmail").value = user.email;
+      document.getElementById("editRole").value = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+      document.getElementById("editForm").classList.remove("hidden");
+    }
+
+    function saveEdit() {
+      const nama = document.getElementById("editNama").value;
+      const email = document.getElementById("editEmail").value;
+
+      if (editIndex !== -1) {
+        users[editIndex].nama = nama;
+        users[editIndex].email = email;
+        renderTable();
+        showPopup("Data pengguna berhasil diperbarui.");
+        document.getElementById("editForm").classList.add("hidden");
+      }
+    }
+
+    function toggleStatus(index) {
+      users[index].aktif = !users[index].aktif;
+      renderTable();
+      showPopup(users[index].aktif ? "Pengguna diaktifkan." : "Pengguna dinonaktifkan.");
+    }
+
+    function showPopup(message) {
+      const popup = document.getElementById("popupNotif");
+      popup.textContent = message;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+
+    renderTable();
+  </script>
 
 </body>
-
 </html>

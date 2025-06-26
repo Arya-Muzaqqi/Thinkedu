@@ -2,126 +2,238 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Kelola Buku Bacaan - Thinkedu</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        .buku-box {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Kelola Buku Bacaan - Thinkedu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('assets/images/background.png') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
+    main.content {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      min-height: 100vh;
+    }
 
-        th,
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
+    .buku-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
 
-        th {
-            background: #f0f0f0;
-            color: #333;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
 
-        .badge {
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 6px;
-            color: white;
-        }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
 
-        .pdf {
-            background-color: #f44336;
-        }
+    th {
+      background: #f0f0f0;
+      color: #333;
+    }
 
-        .doc {
-            background-color: #3f51b5;
-        }
+    .badge {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: white;
+    }
 
-        .ppt {
-            background-color: #ff9800;
-        }
-    </style>
+    .pdf { background-color: #f44336; }
+    .doc { background-color: #3f51b5; }
+    .ppt { background-color: #ff9800; }
+
+    .btn {
+      padding: 6px 10px;
+      font-size: 13px;
+      margin-right: 5px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-delete {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn-add {
+      background: #2196f3;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .form-tambah {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+    }
+
+    .form-tambah input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      display: none;
+      z-index: 1000;
+    }
+  </style>
 </head>
 
 <body class="dashboard">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>⚙️ Admin</h2>
-        <ul>
-            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
-            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
-            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
-            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </aside>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>⚙️ Admin</h2>
+    <ul>
+      <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+      <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+      <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+      <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+      <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
 
-    <!-- Konten -->
-    <main class="content">
-        <header>
-            <h1>Kelola Buku Bacaan</h1>
-            <p>Daftar buku yang tersedia untuk siswa</p>
-        </header>
+  <!-- Konten -->
+  <main class="content">
+    <header>
+      <h1>Kelola Buku Bacaan</h1>
+      <p>Daftar buku yang tersedia untuk siswa</p>
+    </header>
 
-        <section class="buku-box">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Judul Buku</th>
-                        <th>Kategori</th>
-                        <th>Format</th>
-                        <th>Upload oleh</th>
-                    </tr>
-                </thead>
-                <tbody id="bukuTable">
-                    <!-- Data buku dari JSON akan ditampilkan di sini -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <!-- Form Tambah Buku -->
+    <section class="form-tambah">
+      <h3>Unggah Buku Baru</h3>
+      <input type="text" id="judul" placeholder="Judul Buku">
+      <input type="text" id="kategori" placeholder="Kategori">
+      <input type="text" id="ringkasan" placeholder="Ringkasan singkat isi buku">
+      <input type="file" id="fileInput" accept=".pdf,.doc,.ppt,.docx,.pptx">
+      <button class="btn btn-add" onclick="unggahBuku()">Unggah Buku</button>
+    </section>
 
-    <script>
-        fetch('assets/data/data.json')
-            .then(res => res.json())
-            .then(data => {
-                const table = document.getElementById('bukuTable');
-                if (!data.buku || data.buku.length === 0) {
-                    table.innerHTML = "<tr><td colspan='4'>Belum ada buku yang diunggah.</td></tr>";
-                    return;
-                }
+    <!-- Tabel Buku -->
+    <section class="buku-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Judul Buku</th>
+            <th>Kategori</th>
+            <th>Format</th>
+            <th>Ringkasan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="bukuTable"></tbody>
+      </table>
+    </section>
 
-                data.buku.forEach(b => {
-                    const tr = document.createElement('tr');
-                    const badgeClass = b.format.toLowerCase() === 'pdf' ? 'pdf' :
-                        b.format.toLowerCase() === 'doc' ? 'doc' : 'ppt';
-                    tr.innerHTML = `
-            <td>${b.judul}</td>
-            <td>${b.kategori}</td>
-            <td><span class="badge ${badgeClass}">${b.format}</span></td>
-            <td>${b.upload_by}</td>
-          `;
-                    table.appendChild(tr);
-                });
-            })
-            .catch(err => {
-                console.error("Gagal memuat buku:", err);
-            });
-    </script>
+    <!-- Popup -->
+    <div class="popup" id="popupNotif"></div>
+  </main>
+
+  <script>
+    let daftarBuku = [];
+
+    function renderBuku() {
+      const table = document.getElementById("bukuTable");
+      table.innerHTML = "";
+      if (daftarBuku.length === 0) {
+        table.innerHTML = "<tr><td colspan='5'>Belum ada buku yang diunggah.</td></tr>";
+        return;
+      }
+
+      daftarBuku.forEach((buku, index) => {
+        const format = buku.format.toLowerCase();
+        const badgeClass = format === 'pdf' ? 'pdf' :
+                           format === 'doc' || format === 'docx' ? 'doc' :
+                           format === 'ppt' || format === 'pptx' ? 'ppt' : '';
+
+        table.innerHTML += `
+          <tr>
+            <td>${buku.judul}</td>
+            <td>${buku.kategori}</td>
+            <td><span class="badge ${badgeClass}">${buku.format}</span></td>
+            <td>${buku.ringkasan}</td>
+            <td><button class="btn btn-delete" onclick="hapusBuku(${index})">Hapus</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function unggahBuku() {
+      const judul = document.getElementById("judul").value.trim();
+      const kategori = document.getElementById("kategori").value.trim();
+      const ringkasan = document.getElementById("ringkasan").value.trim();
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+
+      if (!judul || !kategori || !ringkasan || !file) {
+        showPopup("Semua kolom harus diisi dan file harus dipilih.");
+        return;
+      }
+
+      const format = file.name.split('.').pop().toUpperCase();
+
+      daftarBuku.push({ judul, kategori, format, ringkasan });
+      renderBuku();
+      showPopup("Buku berhasil diunggah.");
+
+      document.getElementById("judul").value = "";
+      document.getElementById("kategori").value = "";
+      document.getElementById("ringkasan").value = "";
+      document.getElementById("fileInput").value = "";
+    }
+
+    function hapusBuku(index) {
+      const konfirmasi = confirm(`Yakin ingin menghapus buku "${daftarBuku[index].judul}"?`);
+      if (konfirmasi) {
+        daftarBuku.splice(index, 1);
+        renderBuku();
+        showPopup("Buku berhasil dihapus.");
+      }
+    }
+
+    function showPopup(pesan) {
+      const popup = document.getElementById("popupNotif");
+      popup.textContent = pesan;
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 2000);
+    }
+
+    renderBuku();
+  </script>
 
 </body>
-
 </html>

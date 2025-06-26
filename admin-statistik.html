@@ -2,111 +2,230 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Statistik Sistem - Thinkedu</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        .stat-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
+  <meta charset="UTF-8">
+  <title>Statistik Sistem - Thinkedu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('assets/images/background.png') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        .bar-chart {
-            display: flex;
-            gap: 20px;
-            align-items: flex-end;
-            height: 200px;
-            margin-top: 30px;
-        }
+    main.content {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      min-height: 100vh;
+    }
 
-        .bar {
-            width: 60px;
-            background: #2196f3;
-            color: black;
-            text-align: center;
-            padding-top: 5px;
-            border-radius: 6px 6px 0 0;
-        }
-    </style>
+    .stat-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-card {
+      background-color: #f5faff;
+      padding: 15px;
+      border-left: 5px solid #2196f3;
+      border-radius: 10px;
+    }
+
+    .bar-chart {
+      margin-top: 30px;
+      position: relative;
+      width: 100%;
+    }
+
+    .filter-box {
+      margin-bottom: 20px;
+    }
+
+    .filter-box input {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
 
 <body class="dashboard">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>⚙️ Admin</h2>
-        <ul>
-            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
-            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
-            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
-            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </aside>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>⚙️ Admin</h2>
+    <ul>
+      <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+      <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+      <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+      <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+      <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
 
-    <!-- Konten -->
-    <main class="content">
-        <header>
-            <h1>Statistik Sistem</h1>
-            <p>Ringkasan data pengguna dan aktivitas</p>
-        </header>
+  <!-- Konten -->
+  <main class="content">
+    <header>
+      <h1>Statistik Sistem</h1>
+      <p>Ringkasan data pengguna, poin siswa, dan riwayat perolehan poin</p>
+    </header>
 
-        <section class="stat-box" id="ringkasanStatistik">
-            <p><strong>Jumlah Siswa:</strong> ...</p>
-            <p><strong>Jumlah Guru:</strong> ...</p>
-            <p><strong>Total Buku:</strong> ...</p>
-            <p><strong>Reward Aktif:</strong> ...</p>
-            <p><strong>Total Poin Semua Siswa:</strong> ...</p>
-        </section>
+    <!-- Filter Pencarian -->
+    <div class="filter-box">
+      <input type="text" id="searchInput" placeholder="Cari berdasarkan nama siswa..." oninput="tampilkanDetail()">
+    </div>
 
-        <section class="stat-box">
-            <h3>Grafik Poin Siswa</h3>
-            <div class="bar-chart" id="grafikPoin">
-                <!-- Bar siswa akan muncul di sini -->
-            </div>
-        </section>
-    </main>
+    <!-- Ringkasan Statistik -->
+    <section class="stat-box">
+      <div class="stat-grid" id="ringkasanStatistik"></div>
+    </section>
 
-    <script>
-        fetch('assets/data/data.json')
-            .then(res => res.json())
-            .then(data => {
-                const box = document.getElementById("ringkasanStatistik");
-                const totalSiswa = data.users.filter(u => u.role === "siswa").length;
-                const totalGuru = data.users.filter(u => u.role === "guru").length;
-                const totalBuku = data.buku.length;
-                const totalReward = data.reward.length;
-                const totalPoin = data.poin.reduce((acc, p) => acc + p.jumlah, 0);
+    <!-- Grafik -->
+    <section class="stat-box">
+      <h3>Grafik Poin Siswa</h3>
+      <div class="bar-chart" style="height:400px">
+        <canvas id="chartPoin"></canvas>
+      </div>
+    </section>
 
-                box.innerHTML = `
-          <p><strong>Jumlah Siswa:</strong> ${totalSiswa}</p>
-          <p><strong>Jumlah Guru:</strong> ${totalGuru}</p>
-          <p><strong>Total Buku:</strong> ${totalBuku}</p>
-          <p><strong>Reward Aktif:</strong> ${totalReward}</p>
-          <p><strong>Total Poin Semua Siswa:</strong> ${totalPoin}</p>
-        `;
+    <!-- Detail Riwayat Poin -->
+    <section class="stat-box">
+      <h3>Riwayat Perolehan Poin</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nama Siswa</th>
+            <th>Kategori</th>
+            <th>Poin</th>
+          </tr>
+        </thead>
+        <tbody id="tabelDetailPoin"></tbody>
+      </table>
+    </section>
+  </main>
 
-                // Grafik Poin per siswa
-                const grafik = document.getElementById("grafikPoin");
-                data.poin.forEach(p => {
-                    const user = data.users.find(u => u.id === p.userId);
-                    const tinggi = Math.min(p.jumlah, 100); // max tinggi bar 100%
-                    const bar = document.createElement('div');
-                    bar.className = 'bar';
-                    bar.style.height = `${tinggi * 1.5}px`;
-                    bar.innerHTML = `<small>${p.jumlah}</small><br>${user.nama}`;
-                    grafik.appendChild(bar);
-                });
-            })
-            .catch(err => console.error("Gagal memuat statistik:", err));
-    </script>
+  <script>
+    const dataSiswa = [
+      {
+        nama: "Hanni",
+        id: 1,
+        riwayat: [
+          { kategori: "Hadir Tepat Waktu", poin: 30 },
+          { kategori: "Tugas Tepat Waktu", poin: 40 },
+          { kategori: "Aktif Membaca Buku", poin: 30 }
+        ]
+      },
+      {
+        nama: "Minji",
+        id: 2,
+        riwayat: [
+          { kategori: "Hadir Tepat Waktu", poin: 20 },
+          { kategori: "Tugas Tepat Waktu", poin: 50 },
+          { kategori: "Aktif Membaca Buku", poin: 50 }
+        ]
+      },
+      {
+        nama: "Haerin",
+        id: 3,
+        riwayat: [
+          { kategori: "Hadir Tepat Waktu", poin: 25 },
+          { kategori: "Tugas Tepat Waktu", poin: 35 },
+          { kategori: "Aktif Membaca Buku", poin: 40 }
+        ]
+      }
+    ];
 
+    const namaSiswa = dataSiswa.map(s => s.nama);
+    const jumlahPoin = dataSiswa.map(s => s.riwayat.reduce((acc, curr) => acc + curr.poin, 0));
+
+    function tampilkanRingkasan() {
+      const totalSiswa = dataSiswa.length;
+      const totalPoin = jumlahPoin.reduce((a, b) => a + b, 0);
+      document.getElementById("ringkasanStatistik").innerHTML = `
+        <div class="stat-card"><p>👩‍🎓 <strong>${totalSiswa}</strong><br>Jumlah Siswa</p></div>
+        <div class="stat-card"><p>⭐ <strong>${totalPoin}</strong><br>Total Poin</p></div>
+      `;
+    }
+
+    function tampilkanChart() {
+      new Chart(document.getElementById("chartPoin"), {
+        type: 'bar',
+        data: {
+          labels: namaSiswa,
+          datasets: [{
+            label: 'Poin Siswa',
+            data: jumlahPoin,
+            backgroundColor: '#2196f3'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    function tampilkanDetail() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const tbody = document.getElementById("tabelDetailPoin");
+      tbody.innerHTML = "";
+
+      dataSiswa.forEach(siswa => {
+        if (siswa.nama.toLowerCase().includes(input)) {
+          siswa.riwayat.forEach(r => {
+            tbody.innerHTML += `
+              <tr>
+                <td>${siswa.nama}</td>
+                <td>${r.kategori}</td>
+                <td>${r.poin}</td>
+              </tr>
+            `;
+          });
+        }
+      });
+    }
+
+    tampilkanRingkasan();
+    tampilkanChart();
+    tampilkanDetail();
+  </script>
 </body>
 
 </html>

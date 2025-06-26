@@ -2,101 +2,326 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Loyalty Reward - Thinkedu</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style>
-        .reward-box {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>Loyalty Reward - Thinkedu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('assets/images/background.png') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        .reward-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    main.content {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      min-height: 100vh;
+    }
 
-        .reward-card {
-            flex: 1 1 220px;
-            background: #f5faff;
-            border-left: 5px solid #2196f3;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
+    .reward-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
 
-        .reward-card h3 {
-            margin: 0 0 8px;
-            color: #2196f3;
-        }
+    .reward-list, .permintaan-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
-        .reward-card p {
-            margin: 0;
-            font-size: 14px;
-        }
-    </style>
+    .reward-card, .permintaan-card {
+      flex: 1 1 240px;
+      background: #f5faff;
+      border-left: 5px solid #2196f3;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .reward-card h3, .permintaan-card h4 {
+      margin: 0 0 8px;
+      color: #2196f3;
+    }
+
+    .reward-card p, .permintaan-card p {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .reward-card button, .permintaan-card button {
+      font-size: 12px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .btn-delete {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn-edit {
+      background: #ff9800;
+      color: white;
+    }
+
+    .btn-verif {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn-tolak {
+      background: #f44336;
+      color: white;
+    }
+
+    .form-tambah {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+    }
+
+    .form-tambah input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn-add {
+      background: #2196f3;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .edit-form {
+      display: none;
+      background: #e3f2fd;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .edit-form input {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 6px;
+    }
+
+    .btn-save {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn-cancel {
+      background: #ccc;
+      color: black;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .menunggu { background: #ffeb3b; color: #333; }
+    .terverifikasi { background: #4caf50; color: white; }
+    .ditolak { background: #f44336; color: white; }
+  </style>
 </head>
 
 <body class="dashboard">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>⚙️ Admin</h2>
-        <ul>
-            <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
-            <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
-            <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
-            <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </aside>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>⚙️ Admin</h2>
+    <ul>
+      <li><a href="dashboard-admin.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="admin-users.html"><i class="fas fa-users-cog"></i> Manajemen User</a></li>
+      <li><a href="admin-buku.html"><i class="fas fa-book"></i> Kelola Buku</a></li>
+      <li><a href="admin-reward.html"><i class="fas fa-gift"></i> Loyalty Reward</a></li>
+      <li><a href="admin-statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+      <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
 
-    <!-- Konten -->
-    <main class="content">
-        <header>
-            <h1>Loyalty Reward</h1>
-            <p>Daftar reward yang bisa ditukar dengan poin oleh siswa aktif</p>
-        </header>
+  <!-- Konten -->
+  <main class="content">
+    <header>
+      <h1>Loyalty Reward</h1>
+      <p>Kelola reward dan permintaan penukaran poin dari siswa</p>
+    </header>
 
-        <section class="reward-box">
-            <div class="reward-list" id="rewardList">
-                <!-- Data reward akan dimuat di sini -->
-            </div>
-        </section>
-    </main>
+    <!-- Form Tambah Reward -->
+    <section class="form-tambah">
+      <h3>Tambah Reward Baru</h3>
+      <input type="text" id="namaReward" placeholder="Nama Reward">
+      <input type="number" id="poinReward" placeholder="Poin Dibutuhkan">
+      <button class="btn-add" onclick="tambahReward()">Tambah Reward</button>
+    </section>
 
-    <script>
-        fetch('assets/data/data.json')
-            .then(res => res.json())
-            .then(data => {
-                const list = document.getElementById('rewardList');
-                if (!data.reward || data.reward.length === 0) {
-                    list.innerHTML = "<p>Belum ada reward tersedia.</p>";
-                    return;
-                }
+    <!-- Daftar Reward -->
+    <section class="reward-box">
+      <h3>Daftar Reward</h3>
+      <div class="reward-list" id="rewardList"></div>
+    </section>
 
-                data.reward.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = "reward-card";
-                    div.innerHTML = `
+    <!-- Permintaan Penukaran -->
+    <section class="reward-box">
+      <h3>Permintaan Penukaran Poin</h3>
+      <div class="permintaan-list" id="permintaanList"></div>
+    </section>
+
+    <!-- Popup -->
+    <div class="popup" id="popupNotif"></div>
+  </main>
+
+  <script>
+    let rewards = [
+      { nama: "Diskon Les Privat 1 Sesi", poin: 100 },
+      { nama: "Voucher Tryout Online", poin: 150 },
+      { nama: "Gratis Ebook Persiapan UTBK", poin: 120 },
+      { nama: "Diskon Modul Cetak", poin: 80 }
+    ];
+
+    let permintaanPenukaran = [
+      { nama: "Hanni", reward: "Diskon Les Privat 1 Sesi", poin: 100, status: "menunggu" },
+      { nama: "Haerin", reward: "Voucher Tryout Online", poin: 150, status: "menunggu" },
+      { nama: "Minji", reward: "Gratis Ebook Persiapan UTBK", poin: 120, status: "terverifikasi" },
+      { nama: "Hyein", reward: "Diskon Modul Cetak", poin: 80, status: "ditolak" }
+    ];
+
+    function renderRewards() {
+      const list = document.getElementById("rewardList");
+      list.innerHTML = "";
+
+      rewards.forEach((item, index) => {
+        list.innerHTML += `
+          <div class="reward-card">
             <h3>${item.nama}</h3>
             <p>🎯 Poin dibutuhkan: <strong>${item.poin}</strong></p>
-          `;
-                    list.appendChild(div);
-                });
-            })
-            .catch(err => {
-                console.error("Gagal memuat reward:", err);
-            });
-    </script>
+            <button class="btn-edit" onclick="showEditForm(${index})">Edit</button>
+            <button class="btn-delete" onclick="hapusReward(${index})">Hapus</button>
+            <div class="edit-form" id="editForm-${index}">
+              <input type="text" id="editNama-${index}" value="${item.nama}">
+              <input type="number" id="editPoin-${index}" value="${item.poin}">
+              <button class="btn btn-save" onclick="simpanEdit(${index})">Simpan</button>
+              <button class="btn btn-cancel" onclick="batalEdit(${index})">Batal</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderPermintaan() {
+      const list = document.getElementById("permintaanList");
+      list.innerHTML = "";
+
+      permintaanPenukaran.forEach((item, index) => {
+        list.innerHTML += `
+          <div class="permintaan-card">
+            <h4>${item.nama}</h4>
+            <p>🎁 ${item.reward}</p>
+            <p>🔢 ${item.poin} poin</p>
+            <p>Status: <span class="status ${item.status}">${item.status}</span></p>
+            ${item.status === 'menunggu' ? `
+              <button class="btn-verif" onclick="verifikasi(${index})">Verifikasi</button>
+              <button class="btn-tolak" onclick="tolak(${index})">Tolak</button>
+            ` : ''}
+          </div>
+        `;
+      });
+    }
+
+    function tambahReward() {
+      const nama = document.getElementById("namaReward").value.trim();
+      const poin = parseInt(document.getElementById("poinReward").value);
+      if (!nama || isNaN(poin)) return showPopup("Isi nama dan poin dengan benar.");
+      rewards.push({ nama, poin });
+      renderRewards();
+      showPopup("Reward berhasil ditambahkan.");
+      document.getElementById("namaReward").value = "";
+      document.getElementById("poinReward").value = "";
+    }
+
+    function hapusReward(index) {
+      if (confirm(`Hapus reward "${rewards[index].nama}"?`)) {
+        rewards.splice(index, 1);
+        renderRewards();
+        showPopup("Reward dihapus.");
+      }
+    }
+
+    function showEditForm(index) {
+      document.getElementById(`editForm-${index}`).style.display = "block";
+    }
+
+    function batalEdit(index) {
+      document.getElementById(`editForm-${index}`).style.display = "none";
+    }
+
+    function simpanEdit(index) {
+      const nama = document.getElementById(`editNama-${index}`).value.trim();
+      const poin = parseInt(document.getElementById(`editPoin-${index}`).value);
+      if (!nama || isNaN(poin)) return showPopup("Data tidak valid.");
+      rewards[index].nama = nama;
+      rewards[index].poin = poin;
+      renderRewards();
+      showPopup("Reward diperbarui.");
+    }
+
+    function verifikasi(index) {
+      permintaanPenukaran[index].status = "terverifikasi";
+      renderPermintaan();
+      showPopup("Permintaan diverifikasi.");
+    }
+
+    function tolak(index) {
+      permintaanPenukaran[index].status = "ditolak";
+      renderPermintaan();
+      showPopup("Permintaan ditolak.");
+    }
+
+    function showPopup(text) {
+      const popup = document.getElementById("popupNotif");
+      popup.textContent = text;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 2000);
+    }
+
+    renderRewards();
+    renderPermintaan();
+  </script>
 
 </body>
-
 </html>

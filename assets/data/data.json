@@ -1,158 +1,200 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "role": "siswa",
-            "nama": "Hanni",
-            "email": "Hanni@gmail.com",
-            "password": "123456",
-            "kelas": "SMA Kelas 12"
-        },
-        {
-            "id": 2,
-            "role": "guru",
-            "nama": "Pak Budi",
-            "email": "budi@gmail.com",
-            "telepon": "08131313798",
-            "password": "123456"
-        },
-        {
-            "id": 3,
-            "role": "admin",
-            "nama": "Admin Thinkedu",
-            "email": "admin@thinkedu.com",
-            "password": "123456"
-        },
-        {
-            "id": 4,
-            "role": "siswa",
-            "nama": "Haerin",
-            "kelas": "SMA Kelas 12"
-        },
-        {
-            "id": 5,
-            "role": "siswa",
-            "nama": "Minji",
-            "kelas": "SMA Kelas 12"
-        },
-        {
-            "id": 6,
-            "role": "siswa",
-            "nama": "Hyein",
-            "kelas": "SMA Kelas 12"
-        },
-        {
-            "id": 7,
-            "role": "siswa",
-            "nama": "Danielle",
-            "kelas": "SMA Kelas 12"
-        }
-    ],
-    "tugas": [
-        {
-            "id": 1,
-            "judul": "Perkalian 2 digit",
-            "kelas": "SD Kelas 3",
-            "deadline": "2025-06-10",
-            "MataPelajaran": "Matematika"
-        },
-        {
-            "id": 2,
-            "judul": "Hukum Newton 1 - 3",
-            "kelas": "SMA Kelas 12",
-            "deadline": "2025-06-26",
-            "MataPelajaran": "Fisika"
-        }
-    ],
-    "poin": [
-        {
-            "userId": 1,
-            "aktivitas": "Mengumpulkan tugas",
-            "jumlah": 10
-        }
-    ],
-    "buku": [
-        {
-            "id": 1,
-            "judul": "Logika Matematika",
-            "kategori": "Matematika",
-            "upload_by": "admin",
-            "format": "PDF"
-        }
-    ],
-    "reward": [
-        {
-            "id": 1,
-            "nama": "Voucher",
-            "poin": 100
-        }
-    ],
-    "messages": [
-        {
-            "from": "siswa",
-            "to": "Pak Budi",
-            "kelas": "Matematika",
-            "nama": "Hanni",
-            "pesan": "Pak, saya bingung nomor 3.",
-            "waktu": "2025-06-01 15:00"
-        },
-        {
-            "from": "guru",
-            "to": "siswa",
-            "kelas": "Matematika",
-            "nama": "Pak Budi",
-            "pesan": "Gunakan rumus luas segitiga ya.",
-            "waktu": "2025-06-01 15:02"
-        },
-        {
-            "from": "siswa",
-            "to": "Pak Tono",
-            "kelas": "Fisika",
-            "nama": "Hanni",
-            "pesan": "Pak, hukum Newton yang ke-2 maksudnya?",
-            "waktu": "2025-06-01 16:00"
-        }
-    ],
-    "materi": [
-        {
-            "id": 1,
-            "judul": "Persamaan Linear",
-            "subbab": "Persamaan Satu Variabel",
-            "kelas": "SMP Kelas 7",
-            "mapel": "Matematika",
-            "file": "persamaan-linear.pdf",
-            "guru": "Pak Budi"
-        },
-        {
-            "id": 2,
-            "judul": "Reaksi Kimia",
-            "subbab": "Pengantar Reaksi",
-            "kelas": "SMA Kelas 10",
-            "mapel": "Kimia",
-            "file": "reaksi-kimia.ppt",
-            "guru": "Pak Budi"
-        }
-    ],
-    "jadwal": [
-        {
-            "id": 1,
-            "hari": "Senin",
-            "jam": "10:00 - 11:30",
-            "kelas": "SMA Kelas 10",
-            "mapel": "Matematika",
-            "topik": "Fungsi Kuadrat",
-            "guru": "Pak Budi"
-        }
-    ],
-    "penilaian": [
-        {
-            "siswa": "Hanni",
-            "tugas": "Hukum Newton 1 - 3",
-            "kelas": "SMA Kelas 12",
-            "file": "tugas-hanni.pdf",
-            "tanggal": "2025-06-25",
-            "jam": "09:00",
-            "nilai": 90
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "role": "siswa",
+      "nama": "Hanni",
+      "email": "Hanni@gmail.com",
+      "password": "123456",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 2,
+      "role": "guru",
+      "nama": "Pak Budi",
+      "email": "budi@gmail.com",
+      "telepon": "08131313798",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "role": "admin",
+      "nama": "Admin Thinkedu",
+      "email": "admin@thinkedu.com",
+      "password": "123456"
+    },
+    {
+      "id": 4,
+      "role": "siswa",
+      "nama": "Haerin",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 5,
+      "role": "siswa",
+      "nama": "Minji",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 6,
+      "role": "siswa",
+      "nama": "Hyein",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 7,
+      "role": "siswa",
+      "nama": "Danielle",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 8,
+      "role": "siswa",
+      "nama": "Taera",
+      "kelas": "SMA Kelas 12"
+    },
+    {
+      "id": 9,
+      "role": "siswa",
+      "nama": "Jisoo",
+      "kelas": "SMA Kelas 11"
+    }
+  ],
+  "tugas": [
+    {
+      "id": 1,
+      "judul": "Perkalian 2 digit",
+      "kelas": "SD Kelas 3",
+      "deadline": "2025-06-10",
+      "MataPelajaran": "Matematika"
+    },
+    {
+      "id": 2,
+      "judul": "Hukum Newton 1 - 3",
+      "kelas": "SMA Kelas 12",
+      "deadline": "2025-06-26",
+      "MataPelajaran": "Fisika"
+    }
+  ],
+  "poin": [
+    {
+      "userId": 1,
+      "aktivitas": "Mengumpulkan tugas",
+      "jumlah": 10
+    },
+    {
+      "userId": 4,
+      "aktivitas": "Menyelesaikan kuis",
+      "jumlah": 20
+    },
+    {
+      "userId": 5,
+      "aktivitas": "Absen lengkap 1 minggu",
+      "jumlah": 15
+    },
+    {
+      "userId": 6,
+      "aktivitas": "Mengikuti ujian",
+      "jumlah": 25
+    },
+    {
+      "userId": 7,
+      "aktivitas": "Kehadiran terbaik",
+      "jumlah": 30
+    },
+    {
+      "userId": 8,
+      "aktivitas": "Mengerjakan PR",
+      "jumlah": 18
+    },
+    {
+      "userId": 9,
+      "aktivitas": "Menang lomba kelas",
+      "jumlah": 40
+    }
+  ],
+  "buku": [
+    {
+      "id": 1,
+      "judul": "Logika Matematika",
+      "kategori": "Matematika",
+      "upload_by": "admin",
+      "format": "PDF"
+    }
+  ],
+  "reward": [
+    {
+      "id": 1,
+      "nama": "Voucher",
+      "poin": 100
+    }
+  ],
+  "messages": [
+    {
+      "from": "siswa",
+      "to": "Pak Budi",
+      "kelas": "Matematika",
+      "nama": "Hanni",
+      "pesan": "Pak, saya bingung nomor 3.",
+      "waktu": "2025-06-01 15:00"
+    },
+    {
+      "from": "guru",
+      "to": "siswa",
+      "kelas": "Matematika",
+      "nama": "Pak Budi",
+      "pesan": "Gunakan rumus luas segitiga ya.",
+      "waktu": "2025-06-01 15:02"
+    },
+    {
+      "from": "siswa",
+      "to": "Pak Tono",
+      "kelas": "Fisika",
+      "nama": "Hanni",
+      "pesan": "Pak, hukum Newton yang ke-2 maksudnya?",
+      "waktu": "2025-06-01 16:00"
+    }
+  ],
+  "materi": [
+    {
+      "id": 1,
+      "judul": "Persamaan Linear",
+      "subbab": "Persamaan Satu Variabel",
+      "kelas": "SMP Kelas 7",
+      "mapel": "Matematika",
+      "file": "persamaan-linear.pdf",
+      "guru": "Pak Budi"
+    },
+    {
+      "id": 2,
+      "judul": "Reaksi Kimia",
+      "subbab": "Pengantar Reaksi",
+      "kelas": "SMA Kelas 10",
+      "mapel": "Kimia",
+      "file": "reaksi-kimia.ppt",
+      "guru": "Pak Budi"
+    }
+  ],
+  "jadwal": [
+    {
+      "id": 1,
+      "hari": "Senin",
+      "jam": "10:00 - 11:30",
+      "kelas": "SMA Kelas 10",
+      "mapel": "Matematika",
+      "topik": "Fungsi Kuadrat",
+      "guru": "Pak Budi"
+    }
+  ],
+  "penilaian": [
+    {
+      "siswa": "Hanni",
+      "tugas": "Hukum Newton 1 - 3",
+      "kelas": "SMA Kelas 12",
+      "file": "tugas-hanni.pdf",
+      "tanggal": "2025-06-25",
+      "jam": "09:00",
+      "nilai": 90
+    }
+  ]
 }
