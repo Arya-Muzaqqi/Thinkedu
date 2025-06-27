@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <title>Daftar Tugas - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .card {
+      max-width: 100%;
+      width: 100%;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .file-tugas {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 15px 0;
+      background: #f9f9f9;
+      border: 1px dashed #ccc;
+      border-radius: 6px;
+    }
+
+    .upload-box {
+      margin-bottom: 20px;
+    }
+
+    .upload-box input[type="file"] {
+      margin-top: 8px;
+    }
+
+    .aksi-baris {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .kembali {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .btn-kirim-label {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-kirim-label:hover {
+      background-color: #218838;
+    }
+
+    /* Hidden checkbox */
+    #popup-check {
+      display: none;
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #popup-check:checked ~ .popup {
+      display: flex;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 300px;
+    }
+
+    .popup-content p {
+      color: #000;
+      font-weight: normal;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .btn-selesai {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .btn-selesai:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>🎓 Thinkedu</h2>
+        <ul>
+            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Konten -->
+    <main class="content">
+        <header>
+            <h1>Tugas Matematika Dasar</h1>
+            <p>Selesaikan tugas berikut dengan menggunakan rumus lengkap!</p>
+        </header>
+
+
+  <!-- Checkbox Trigger (harus di awal) -->
+  <input type="checkbox" id="popup-check">
+
+  <div class="card">
+    <p><strong>Guru:</strong> Pak Joko</p>
+    <p><strong>Materi:</strong> Bilangan Operasi Hitung</p>
+    <p><strong>Deadline:</strong> 10 Juni 2025, 23:59 WIB</p>
+    <p><strong>Deskripsi:</strong> Jika mengumpulkan tugas lebih dari yang sudah dijadwalkan, tugas akan diberi nilai 0.</p>
+
+    <div class="file-tugas">
+      <span>📄 Tugas_Bilangan_Operasi_Hitung.pdf</span>
+      <a href="file/Tugas_Matematika_Dasar.pdf" download>Download</a>
+    </div>
+
+    <div class="upload-box">
+      <label for="upload-jawaban">Unggah Jawaban (PDF/DOCX):</label><br>
+      <input type="file" id="upload-jawaban" accept=".pdf,.doc,.docx">
+    </div>
+
+    <div class="aksi-baris">
+      <a href="siswa-tugas.html" class="kembali">Kembali</a>
+      <label for="popup-check" class="btn-kirim-label">Kirim</label>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup">
+    <div class="popup-content">
+      <p>Tugas berhasil dikumpulkan ✅</p>
+      <label for="popup-check" class="btn-selesai">Selesai</label>
+    </div>
+  </div>
+
+</body>
+</html>
+

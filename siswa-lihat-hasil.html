@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+    <title>Daftar Tugas - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 100%;
+      width: 100%;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .status-selesai {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-terlambat {
+      color: red;
+      font-weight: bold;
+    }
+
+    .nilai-bagus {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .nilai-rendah {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .kembali {
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>🎓 Thinkedu</h2>
+        <ul>
+            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Konten -->
+    <main class="content">
+        <header>
+            <h1>Hasil Tugas Fisika</h1>
+            <p>Hasil dari tugas yang telah dikerjakan oleh siswa, semoga hasilnya memuaskan !</p>
+        </header>
+        <div class="container">
+  <h3>Hasil Tugas Fisika Hanni</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Materi</th>
+        <th>Tanggal Kumpul</th>
+        <th>Status</th>
+        <th>Nilai</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Gaya</td>
+        <td> 23 Mei 2025</td>
+        <td class="status-selesai">Terkumpul</td>
+        <td><span class="nilai-bagus">90</span></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Listrik dan Magnet</td>
+        <td>3 Juni 2025</td>
+        <td class="status-terlambat">Terlambat</td>
+        <td><span class="nilai-rendah">60</span></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Tugas Matematika 1</td>
+        <td>8 Juni 2025</td>
+        <td class="status-selesai">Terkumpul</td>
+        <td><span class="nilai-bagus">85</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="aksi-baris">
+      <a href="siswa-tugas.html" class="kembali">Kembali</a>
+    </div>
+</div>
+
+
+</body>
+</html>
+
