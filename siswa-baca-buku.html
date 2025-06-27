@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buku Bacaan - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        .book-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      width: 100%;
+      max-width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 14px;
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .book-meta {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-back {
+   background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px; /* disamakan juga */
+}
+
+.btn-download {
+  background-color: #22be37;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px; /* disamakan juga */
+}
+
+.btn-download:hover {
+  background-color: #2980b9;
+}
+
+
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>🎓 Thinkedu</h2>
+        <ul>
+            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Konten -->
+    <main class="content">
+        <header>
+            <h1>Matematika</h1>
+            <p>Silahkan baca buku untuk mendapatkan poin.</p>
+        </header>
+
+    <div class="book-container">
+        <p>Kategori: Matematika</p>
+        <p>Judul buku : Logika Matematika</p>
+        <p>Pengunggah: Admin</p>
+        <p>Format: PDF</p>
+        
+        
+    <!-- Viewer PDF -->
+    <iframe class="pdf-viewer" src="assets/pdf/Logika-matematika.pdf"></iframe>
+
+    <!-- Tombol Download -->
+        <div class="button-group">
+            <div class="btn-back" onclick="history.back()" >Kembali</div>
+            <div class="file-tugas">
+        <a href="assets/pdf/logika-matematika.pdf" class="btn-download">Download</a>
+        </div>
+
+        </div>
+    </main>
+</body>
+
+</html>

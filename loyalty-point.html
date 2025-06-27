@@ -7,6 +7,38 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<style>
+ .card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 25px;   /* jarak antar card */
+  width: 100%;            /* pastikan penuh kontainer */
+  display: block;
+  box-sizing: border-box; /* penting agar padding dihitung benar */
+}
+.content {
+  margin-left: 250px;
+  padding: 30px;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+.btn-detail {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.btn-detail:hover {
+  background-color: #2980b9;
+}
+
+</style>
+    
 </head>
 
 <body class="dashboard">
@@ -33,31 +65,31 @@
             <h1>Loyalty Point</h1>
             <p>Poin aktif kamu bisa ditukar dengan reward menarik!</p>
         </header>
+            <!-- Total Poin -->
+    <section class="card">
+        <h3>Total Poin</h3>
+        <p><strong>80</strong> poin</p>
+    </section>
 
-        <section class="overview">
-            <div class="card">
-                <h3>Total Poin</h3>
-                <p><strong>80</strong> poin</p>
-            </div>
-        </section>
-
-        <section class="card">
-            <h3>Riwayat Aktivitas Poin</h3>
+<!-- Riwayat Aktivitas -->
+    <section class="card">
+        <h3>Riwayat Aktivitas Poin</h3>
             <ul>
                 <li>✅ Hadir di Kelas: +20 poin</li>
                 <li>✅ Mengumpulkan Tugas: +10 poin</li>
                 <li>✅ Membaca Buku Bacaan: +50 poin</li>
             </ul>
-        </section>
+    </section>
 
-        <section class="card">
-            <h3>Progres Menuju Reward</h3>
+<!-- Progres Menuju Reward -->
+    <section class="card">
+        <h3>Progres Menuju Reward</h3>
             <div class="progress-container">
-                <div class="progress-bar" style="width: 80%;">80 / 100 poin</div>
+            <div class="progress-bar" style="width: 80%;">80 / 100 poin</div>
             </div>
-            <a href="#" class="btn-detail">🎁 Tukar Poin</a>
-        </section>
-    </main>
+                <a href="siswa-tukar-point.html" class="btn-detail">🎁 Tukar Poin</a>
+    </section>
+</main>
 
 </body>
 
