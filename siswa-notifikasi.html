@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buku Bacaan - Thinkedu</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+  .notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.notification {
+  background-color: #f0f0f0;
+  border-left: 5px solid #7f8c8d;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.notification.unread {
+  background-color: #ecf9ff;
+  border-left-color: #3498db;
+}
+
+.notification.read {
+  background-color: #f9f9f9;
+  border-left-color: #7f8c8d;
+  opacity: 0.8;
+}
+.notification .date {
+  font-size: 12px;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+.notifications a {
+  text-decoration: none;
+  display: block;
+}
+
+.notification h4,
+.notification p {
+  color: inherit;
+}
+
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        <ul>
+            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="siswa-notifikasi.html">
+                <span class="icon-badge">
+                <i class="fas fa-bell"></i>
+                <span class="badge">2</span>
+                </span>Notifikasi</a>
+           </li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Notifikasi</h1>
+            <p> Berikut adalah notifikasi mu Hanni!</p>
+        </header>
+        <section class="notifications">
+            <a href="siswa-detail-notifikasi.html" class="notification unread">
+                <h4>📅 Jadwal Belajar Baru</h4>
+                <p class="date">28 Juni 2025</p>
+                <p>Jadwal matematika tambahan pada hari Jumat pukul 14.00 WIB.</p></a>
+
+            <a href="siswa-detail-notifikasi.html" class="notification unread">
+                <h4>📚 Tugas Baru</h4>
+                <p class="date">27 Juni 2025</p>
+                <p>Silahkan kumpulkan tugas Bahasa Indonesia sebelum 30 Juni 2025.</p>
+            </a>
+
+            <a href="siswa-detail-notifikasi.html"class="notification read">
+                <h4>✅ Tugas Diterima</h4>
+                <p class="date">25 Juni 2025</p>
+                <p>Tugas Fisika telah diterima dan dinilai.</p>
+            </a>
+
+            <a href="siswa-detail-notifikasi.html"class="notification read">
+                <h4>🔔 Pengumuman Umum</h4>
+                <p class="date">20 Juni 2025</p>
+                <p>Libur sekolah tanggal 1 Juli 2025, selamat berlibur!</p>
+            </a>
+        </section>
+    </main>
+</body>
+</html>

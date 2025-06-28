@@ -39,6 +39,7 @@
       text-align: center;
       width: 100%;
     }
+    
 
     .reward-card h3 {
       font-size: 14px;
@@ -65,10 +66,31 @@
 
     .btn-exchange:hover {
       background-color: #2980b9;
+    }
+
+    .btn-exchange-gagal {
+      background-color: yellow;
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+      font-size: 14px;
+    }
+
+    .btn-exchange:hover {
+      background-color: #2980b9;
+    }
+
     #popup-check {
       display: none;
     }
+    #popup-check-gagal {
+      display: none;
     }
+  
     .popup {
       display: none;
       position: fixed;
@@ -79,12 +101,24 @@
       align-items: center;
       z-index: 999;
     }
+    
+    #popup-check:checked ~ #popup-berhasil {
+     display: flex;
+    }
 
-    #popup-check:checked ~ .popup {
-      display: flex;
+    #popup-check-gagal:checked ~ #popup-gagal {
+     display: flex;  
     }
 
     .popup-content {
+      background: #fff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 300px;
+    }
+     .popup-content-gagal {
       background: #fff;
       padding: 30px;
       text-align: center;
@@ -96,30 +130,33 @@
     .popup-content p {
       color: #000;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 14px;
       margin-bottom: 20px;
     }
-
-    .btn-selesai {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-    }
-
-    .btn-selesai:hover {
-      background-color: #0056b3;
-    }
+   
+    .btn-close {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-close:hover {
+  background-color: #0056b3;
+}
     </style>
 </head>
 <body>
+  <input type="checkbox" id="popup-check" style="display:none;">
+  <input type="checkbox" id="popup-check-gagal" style="display:none;">
     <body class="dashboard">
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2>🎓 Thinkedu</h2>
+      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -129,6 +166,12 @@
             <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
             <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
             <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="siswa-notifikasi.html">
+                <span class="icon-badge">
+                <i class="fas fa-bell"></i>
+                <span class="badge">2</span>
+                </span>Notifikasi</a>
+            </li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>
@@ -145,7 +188,7 @@
         <i class="fas fa-gift fa-2x" style="color:#e67e22;"></i>
         <h3>Diskon Les Privat</h3>
         <p>100 poin</p>
-         <label for="popup-check" class="btn-exchange">Tukar Sekarang</label>
+         <label for="popup-check-gagal" class="btn-exchange-gagal">Simulasi Gagal</label>
       </div>
 
       <div class="reward-card">
@@ -164,11 +207,19 @@
     </div>
   </div>
     </main>
-    <div class="popup">
-    <div class="popup-content">
-      <p>Penukaran hadiah berhasil ✅</p>
-      <!-- ✅ Tombol Tutup = Label -->
-      <label for="popup-check" class="btn-close">Tutup</label>
+    <div class="popup" id="popup-berhasil">
+      <div class="popup-content">
+        <p>Penukaran hadiah berhasil ✅</p>
+        <label for="popup-check" class="btn-close">Tutup</label>
+      </div>
+    </div>
+
+
+    <div class="popup" id="popup-gagal">
+      <div class="popup-content">
+        <p>Penukaran hadiah gagal karena poin tidak mencukupi ❌ </p>
+        <label for="popup-check-gagal" class="btn-close">Tutup</label>
+      </div>
     </div>
   </div>
 </div>

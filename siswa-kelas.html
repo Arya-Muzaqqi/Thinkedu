@@ -7,13 +7,154 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+
+        .sidebar img.logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+        
+        .sidebar ul li a:hover {
+            background: #2196F3;
+            color: #fff;
+
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
+    }
+
+.kelas-grid {
+ display: flex;
+    flex-wrap: nowrap; 
+    justify-content: center; 
+    gap: 25px; 
+}
+
+
+.kelas-card {
+ flex-shrink: 0; 
+    width: 300px; 
+    background: white; 
+    border-radius: 12px;
+    padding: 25px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+.kelas-card:hover {
+ transform: translateY(-5px); /* Efek sedikit terangkat saat hover */
+ box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Bayangan lebih kuat saat hover */
+}
+
+.kelas-card h3 {
+ color: #333; /* Warna judul kelas lebih gelap */
+ margin-top: 0;
+ margin-bottom: 10px; /* Ruang di bawah judul kelas */
+}
+
+.kelas-card p{
+ color: #555; /* Warna teks guru lebih lembut */
+ margin-bottom: 20px; /* Ruang di bawah nama guru */
+}
+.kelas-card:nth-child(1) {
+  background: linear-gradient(135deg, #29ABE2, #007bff); /* Biru muda */
+}
+
+.kelas-card:nth-child(2) {
+  background: linear-gradient(135deg, #FFCA28, #FF9800); /* Hijau muda */
+}
+
+.kelas-card:nth-child(3) {
+  background: linear-gradient(135deg, #66BB6A, #43A047); /* Oranye muda */
+}
+
+.kelas-card:nth-child(1) h3,
+.kelas-card:nth-child(1) p {
+ color: white;
+}
+.btn-detail {
+  display: inline-block;
+ background: #007bff; /* Warna tombol biru yang lebih standar */
+ color: white;
+ padding: 12px 20px; /* Padding tombol lebih besar */
+ border-radius: 8px; /* Sudut tombol lebih membulat */
+ text-decoration: none;
+ font-weight: 500; /* Sedikit lebih tebal */
+ transition: background-color 0.3s ease; /* Efek transisi hover */
+}
+
+.btn-detail:hover {
+ background: #0056b3; 
+}
+
+    </style>
 </head>
 
 <body class="dashboard">
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2>🎓 Thinkedu</h2>
+        <img src="assets/images/logobaru.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -23,6 +164,12 @@
             <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
             <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
             <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="siswa-notifikasi.html">
+                <span class="icon-badge">
+                <i class="fas fa-bell"></i>
+                <span class="badge">2</span>
+                </span>Notifikasi</a>
+            </li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>

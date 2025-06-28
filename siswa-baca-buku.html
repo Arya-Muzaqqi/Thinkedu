@@ -9,7 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <style>
-        .book-container {
+      html, body {
+         height: 100%;
+         margin: 0;
+        }
+
+        body {
+         background: url('assets/images/background.png') no-repeat center center fixed;
+         background-size: cover;
+         display: flex;
+         font-family: 'Poppins', sans-serif;
+        }
+      .book-container {
       background-color: white;
       border-radius: 10px;
       padding: 25px;
@@ -76,18 +87,25 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2>🎓 Thinkedu</h2>
+        <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        
         <ul>
-            <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
-            <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
-            <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
-            <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
-            <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
-            <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
-            <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
-            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
+      <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
+      <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
+      <li><a href="siswa-jadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+      <li><a href="siswa-tugas.html"><i class="fas fa-tasks"></i> Tugas</a></li>
+      <li><a href="siswa-buku.html"><i class="fas fa-book"></i> Buku Bacaan</a></li>
+      <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
+      <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
+      <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+      <li><a href="siswa-notifikasi.html">
+         <span class="icon-badge">
+         <i class="fas fa-bell"></i>
+         <span class="badge">2</span>
+         </span>Notifikasi</a>
+      </li>
+      <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
     </aside>
 
     <!-- Konten -->

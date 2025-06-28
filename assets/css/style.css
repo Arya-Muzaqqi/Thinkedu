@@ -7,14 +7,15 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #e3f2fd;
     color: #333;
+    background: url('assets/images/background.png') no-repeat center center fixed
 }
 
 /* DASHBOARD LAYOUT */
 .dashboard {
     display: flex;
     min-height: 100vh;
+   
 }
 
 /* SIDEBAR PUTIH */
@@ -44,13 +45,30 @@ body {
 }
 
 .sidebar a {
-    color: #2196f3;
+    color: black;
     text-decoration: none;
     font-size: 16px;
     display: block;
     transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
 }
 
+.icon-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-badge .badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: rgb(38, 163, 235);
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 4px;
+  font-size: 10px;
+  line-height: 1;
+}
 .sidebar a:hover {
     color: #1976d2;
 }
@@ -84,6 +102,7 @@ header p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
+    font-size: 14px;
 }
 
 .card,
@@ -186,4 +205,10 @@ header p {
 
 .hidden {
     display: none;
+}
+
+.sidebar img.logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto 20px;
 }

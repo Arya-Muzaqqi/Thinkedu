@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <style>
+body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f6f9;
+    }
+.sidebar {
+  position: fixed;   /* Kunci sidebar di kiri */
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;      /* Full tinggi layar */
+  background: white; /* Opsional: supaya sidebar solid */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* opsional: efek bayangan */
+  box-sizing: border-box;
+}
+
  .card {
   background-color: white;
   border-radius: 10px;
@@ -20,8 +37,9 @@
 }
 .content {
   margin-left: 250px;
-  padding: 30px;
-  max-width: 900px;
+  padding: 40px;
+  min-height: 100vh;   /* agar full tinggi layar */
+  background-color: #e3f2fd; /* Latar biru muda */
   box-sizing: border-box;
 }
 .btn-detail {
@@ -35,6 +53,15 @@
 }
 .btn-detail:hover {
   background-color: #2980b9;
+  width: 100%;
+}
+.card ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.card ul li {
+  margin-bottom: 8px;
 }
 
 </style>
@@ -45,7 +72,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2>🎓 Thinkedu</h2>
+      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -55,6 +82,12 @@
             <li><a href="loyalty-point.html"><i class="fas fa-star"></i> Loyalty Point</a></li>
             <li><a href="laporan-belajar.html"><i class="fas fa-chart-line"></i> Laporan Belajar</a></li>
             <li><a href="siswa-chat.html"><i class="fas fa-comments"></i> Chat Guru</a></li>
+            <li><a href="siswa-notifikasi.html">
+                <span class="icon-badge">
+                <i class="fas fa-bell"></i>
+                <span class="badge">2</span>
+                </span>Notifikasi</a>
+            </li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>
@@ -89,6 +122,14 @@
             </div>
                 <a href="siswa-tukar-point.html" class="btn-detail">🎁 Tukar Poin</a>
     </section>
+
+    <section class="card">
+  <h3>Riwayat Penukaran Hadiah</h3>
+  <ul>
+    <li>🎁 10/06/2025 - Tukar 50 poin: Voucher Diskon 10%</li>
+    <li>🎁 20/05/2025 - Tukar 30 poin: Pulpen Eksklusif</li>
+  </ul>
+</section>
 </main>
 
 </body>
