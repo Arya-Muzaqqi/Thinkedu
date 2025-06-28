@@ -7,6 +7,202 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+
+        .sidebar img.logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+        
+        .sidebar ul li a:hover {
+            background: #2196F3;
+            color: #fff;
+
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
+    }
+
+    .tugas-card:nth-child(1) {
+     background: linear-gradient(135deg,#007BFF, #4A90E2);
+    }
+
+    .tugas-card:nth-child(2) {
+     background:linear-gradient(135deg,#FF6F00, #FFA500);
+    }
+    .tugas-card:nth-child(3) {
+     background: linear-gradient(135deg,#689F38, #8BC34A); 
+    }
+
+    .tugas-card:nth-child(1) h3,
+    .tugas-card:nth-child(1) p {
+     color: white;
+    }
+
+    .tugas-card:nth-child(2) h3,
+    .tugas-card:nth-child(2) p {
+     color: white;
+    }
+
+    .tugas-card:nth-child(3) h3,
+    .tugas-card:nth-child(3) p {
+    color: white;
+    }
+
+    .tugas-card i{
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #ff00ff, #5bf1e4);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+    .btn-detail {
+   display: inline-flex; /* Menggunakan flexbox untuk ikon dan teks di tengah */
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2); /* Tombol transparan putih */
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            border: none; /* Pastikan tidak ada border */
+            transition: background-color 0.3s ease;
+            width: fit-content; 
+            margin-left: 8px;
+            
+    }
+
+    .btn-detail:hover {
+     background: rgba(255, 255, 255, 0.4); 
+    }
+
+    .tugas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.tugas-card {
+    background: white; /* Default background */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: white; /* Teks putih untuk kartu dengan gradien */
+}
+
+.tugas-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.tugas-card h3 {
+    font-size: 1.17em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    color: white; /* Judul putih */
+}
+
+.tugas-card h3 i {
+    margin-right: 10px;
+    font-size: 14px; /* Ukuran ikon hari lebih besar */
+    color: rgba(255, 255, 255, 0.8); /* Warna ikon hari sedikit transparan */
+}
+
+.tugas-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tugas-card ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9); /* Teks list item sedikit transparan */
+}
+
+.tugas-card ul li i {
+    margin-right: 10px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7); /* Ikon jam lebih lembut */
+}
+
+.tugas-card h3 i {
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #ff00ff, #5bf1e4);
+    border-radius: 50%;
+    padding: 5px;
+
+}
+    </style>
 </head>
 
 <body class="dashboard">
@@ -43,7 +239,7 @@
         <section class="tugas-list">
 
             <div class="tugas-card">
-                <h3>Matematika Dasar</h3>
+                <h3><i class="fas fa-calculator"></i>Matematika Dasar</h3>
                 <p>Guru: Pak Joko</p>
                 <p>Materi: Bilangan Operasi Hitung</p>
                 <p>Deadline: 10 Juni 2025</p>
@@ -54,7 +250,7 @@
             </div>
 
             <div class="tugas-card">
-                <h3>Fisika Kelas 11</h3>
+                <h3><i class="fas fa-atom"></i>Fisika Kelas 11</h3>
                 <p>Guru: Pak Tono</p>
                 <p>Materi: Hukum Newton</p>
                 <p>Deadline: 8 Juni 2025</p>
@@ -65,7 +261,7 @@
             </div>
 
             <div class="tugas-card">
-                <h3>Kimia Dasar</h3>
+                <h3><i class="fas fa-vial"></i>Kimia Dasar</h3>
                 <p>Guru: Bu Lestari</p>
                 <p>Materi: Molekul</p>
                 <p>Deadline: 12 Juni 2025</p>

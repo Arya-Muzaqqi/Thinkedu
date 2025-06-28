@@ -1,19 +1,184 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <title>Jadwal Bimbingan - Thinkedu</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<style>
+    
+    body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+        .sidebar img.logo {
+            width: 200px;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+          color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+
+        .sidebar ul li a:hover {
+          background: #2196F3;
+          color: #fff;
+        }
+
+        .content {
+          flex: 1;
+          padding: 40px;
+          background-color: rgba(255, 255, 255, 0.7); /* Lebih terang agar teks kontras */
+        }
+
+
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
+    }
+
+    .jadwal-card:nth-child(1) {
+  background: linear-gradient(135deg,#007BFF, #4A90E2);
+}
+
+.jadwal-card:nth-child(2) {
+  background:linear-gradient(135deg,#FF6F00, #FFA500);
+}
+.jadwal-card:nth-child(3) {
+  background: linear-gradient(135deg,#689F38, #8BC34A); 
+}
+
+.jadwal-card:nth-child(1) h3,
+.jadwal-card:nth-child(1) ul {
+ color: white;
+
+}
+
+.jadwal-card:nth-child(2) h3,
+.jadwal-card:nth-child(2) ul {
+ color: white;
+
+}
+
+.jadwal-card:nth-child(3) h3,
+.jadwal-card:nth-child(3) ul {
+ color: white;
+}
+
+.jadwal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.jadwal-card {
+    background: white; /* Default background */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: white; /* Teks putih untuk kartu dengan gradien */
+}
+
+.jadwal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.jadwal-card h3 {
+    font-size: 1.17em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    color: white; /* Judul putih */
+}
+
+.jadwal-card h3 i {
+    margin-right: 10px;
+    font-size: 14px; /* Ukuran ikon hari lebih besar */
+    color: rgba(255, 255, 255, 0.8); /* Warna ikon hari sedikit transparan */
+}
+
+.jadwal-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jadwal-card ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9); /* Teks list item sedikit transparan */
+}
+
+.jadwal-card ul li i {
+    margin-right: 10px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7); /* Ikon jam lebih lembut */
+}
+
+.jadwal-card h3 i {
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #ff00ff, #5bf1e4);
+    border-radius: 50%;
+    padding: 5px;
+
+}
+</style>
 </head>
 
 <body class="dashboard">
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+        <img src="assets/images/logobaru.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -42,25 +207,25 @@
 
         <section class="jadwal-list">
             <div class="jadwal-card">
-                <h3><i class="fas fa-calendar-day"></i> Senin</h3>
+                <h3><i class="fas fa-sun"></i> Senin</h3>
                 <ul>
-                    <li>08:00 - Matematika (Pak Budi)</li>
-                    <li>10:00 - Bahasa Indonesia (Pak Wahyu)</li>
+                    <li><i class="fas fa-clock"></i>08:00 - Matematika (Pak Budi)</li>
+                    <li><i class="fas fa-clock"></i>10:00 - Bahasa Indonesia (Pak Wahyu)</li>
                 </ul>
             </div>
 
             <div class="jadwal-card">
-                <h3><i class="fas fa-calendar-day"></i> Rabu</h3>
+                <h3><i class="fas fa-sun"></i> Rabu</h3>
                 <ul>
-                    <li>13:00 - Fisika (Pak Tono)</li>
+                    <li><i class="fas fa-clock"></i>13:00 - Fisika (Pak Tono)</li>
                 </ul>
             </div>
 
             <div class="jadwal-card">
-                <h3><i class="fas fa-calendar-day"></i> Jumat</h3>
+                <h3><i class="fas fa-moon"></i> Jumat</h3>
                 <ul>
-                    <li>09:00 - Kimia (Bu Lestari)</li>
-                    <li>14:00 - Bahasa Inggris (Ms. Ann)</li>
+                    <li><i class="fas fa-clock"></i>09:00 - Kimia (Bu Lestari)</li>
+                    <li><i class="fas fa-clock"></i>14:00 - Bahasa Inggris (Ms. Ann)</li>
                 </ul>
             </div>
         </section>

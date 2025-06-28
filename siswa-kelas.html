@@ -82,10 +82,13 @@
     }
 
 .kelas-grid {
- display: flex;
-    flex-wrap: nowrap; 
-    justify-content: center; 
-    gap: 25px; 
+ display: grid; 
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ flex-wrap: nowrap; 
+ justify-content: center; 
+ gap: 25px;
+    /* overflow-x: auto; */
+    /* padding-bottom: 10px; */
 }
 
 
@@ -95,11 +98,12 @@
     background: white; 
     border-radius: 12px;
     padding: 25px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15); 
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
     display: flex; 
     flex-direction: column; 
     justify-content: space-between; 
+    min-height: 180px;
 }
 .kelas-card:hover {
  transform: translateY(-5px); /* Efek sedikit terangkat saat hover */
@@ -112,39 +116,68 @@
  margin-bottom: 10px; /* Ruang di bawah judul kelas */
 }
 
+.kelas-card h3 i {
+    margin-right: 10px;
+    font-size: 0.9em; 
+}
+
+.btn-detail i {
+    margin-left: 8px; 
+    font-size: 0.9em; 
+}
+
 .kelas-card p{
  color: #555; /* Warna teks guru lebih lembut */
  margin-bottom: 20px; /* Ruang di bawah nama guru */
 }
 .kelas-card:nth-child(1) {
-  background: linear-gradient(135deg, #29ABE2, #007bff); /* Biru muda */
+  background: linear-gradient(135deg,#007BFF, #4A90E2);
 }
 
 .kelas-card:nth-child(2) {
-  background: linear-gradient(135deg, #FFCA28, #FF9800); /* Hijau muda */
+  background:linear-gradient(135deg,#FF6F00, #FFA500);
 }
-
 .kelas-card:nth-child(3) {
-  background: linear-gradient(135deg, #66BB6A, #43A047); /* Oranye muda */
+  background: linear-gradient(135deg,#689F38, #8BC34A); 
 }
 
 .kelas-card:nth-child(1) h3,
 .kelas-card:nth-child(1) p {
  color: white;
+
+}
+
+.kelas-card:nth-child(2) h3,
+.kelas-card:nth-child(2) p {
+ color: white;
+
+}
+
+.kelas-card:nth-child(3) h3,
+.kelas-card:nth-child(3) p {
+ color: white;
+}
+.kelas-card i{
+    font-size: 14px;
+    color: white;
+    background: linear-gradient(135deg, #ff00ff, #5bf1e4);
+    border-radius: 50%;
+    padding: 5px;
 }
 .btn-detail {
-  display: inline-block;
- background: #007bff; /* Warna tombol biru yang lebih standar */
- color: white;
- padding: 12px 20px; /* Padding tombol lebih besar */
- border-radius: 8px; /* Sudut tombol lebih membulat */
- text-decoration: none;
- font-weight: 500; /* Sedikit lebih tebal */
- transition: background-color 0.3s ease; /* Efek transisi hover */
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2); /* Tombol transparan putih */
+    backdrop-filter: blur(5px); /* Efek blur untuk menyatu dengan gradien */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
 .btn-detail:hover {
- background: #0056b3; 
+ background: rgba(255, 255, 255, 0.4); 
 }
 
     </style>
@@ -183,21 +216,21 @@
 
         <section class="kelas-grid">
             <div class="kelas-card">
-                <h3>Kelas 10 IPA</h3>
+                <h3><i class="fas fa-flask"></i>Kelas 10 IPA</h3>
                 <p>Guru: Pak Budi</p>
-                <a href="siswa-tugas.html" class="btn-detail">Lihat Tugas</a>
+                <a href="siswa-tugas.html" class="btn-detail" > 👁️Lihat Tugas</a>
             </div>
 
             <div class="kelas-card">
-                <h3>Kelas 11 Matematika</h3>
+                <h3><i class="fas fa-calculator" ></i>Kelas 11 Matematika</h3>
                 <p>Guru: Pak Joko</p>
-                <a href="siswa-tugas.html" class="btn-detail">Lihat Tugas</a>
+                <a href="siswa-tugas.html" class="btn-detail" >👁️ Lihat Tugas</a>
             </div>
 
             <div class="kelas-card">
-                <h3>Kelas 12 Kimia</h3>
+                <h3><i class="fas fa-vial"></i>Kelas 12 Kimia</h3>
                 <p>Guru: Ibu Lestari</p>
-                <a href="siswa-tugas.html" class="btn-detail">Lihat Tugas</a>
+                <a href="siswa-tugas.html" class="btn-detail" > 👁️ Lihat Tugas</a>
             </div>
         </section>
     </main>
