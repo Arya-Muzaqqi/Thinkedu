@@ -83,14 +83,14 @@
     }
 
     .tugas-card:nth-child(1) {
-     background: linear-gradient(135deg,#007BFF, #4A90E2);
+     background: linear-gradient(135deg, #1e90ff, #3ea0ff);
     }
 
     .tugas-card:nth-child(2) {
-     background:linear-gradient(135deg,#FF6F00, #FFA500);
+     background: linear-gradient(135deg, #ff8c00, #ffa500); 
     }
     .tugas-card:nth-child(3) {
-     background: linear-gradient(135deg,#689F38, #8BC34A); 
+     background: linear-gradient(135deg, #32cd32, #7ce96c);
     }
 
     .tugas-card:nth-child(1) h3,
@@ -116,6 +116,63 @@
     padding: 5px;
 }
 
+.tugas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Styling kartu berwarna gradien */
+.tugas-card {
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: white;
+  transition: transform .2s, box-shadow .2s;
+}
+.tugas-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Teks & ikon selalu putih */
+.tugas-card h3,
+.tugas-card p,
+.tugas-card i {
+  color: white;
+}
+.tugas-card h3 i {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.tugas-grid .card {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: white;
+  position: relative;
+}
+/* Tombol detail: warna putih semi-transparan */
+.btn-detail {
+  display: inline-block;
+  margin-top: 15px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.btn-detail:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+
+/* tombol */
+.btn-detail:hover {
+  background: #1976d2;
+}
+
     .btn-detail {
    display: inline-flex; /* Menggunakan flexbox untuk ikon dan teks di tengah */
             align-items: center;
@@ -139,69 +196,8 @@
      background: rgba(255, 255, 255, 0.4); 
     }
 
-    .tugas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
 
-.tugas-card {
-    background: white; /* Default background */
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    color: white; /* Teks putih untuk kartu dengan gradien */
-}
 
-.tugas-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.tugas-card h3 {
-    font-size: 1.17em;
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    color: white; /* Judul putih */
-}
-
-.tugas-card h3 i {
-    margin-right: 10px;
-    font-size: 14px; /* Ukuran ikon hari lebih besar */
-    color: rgba(255, 255, 255, 0.8); /* Warna ikon hari sedikit transparan */
-}
-
-.tugas-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.tugas-card ul li {
-    margin-bottom: 10px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9); /* Teks list item sedikit transparan */
-}
-
-.tugas-card ul li i {
-    margin-right: 10px;
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7); /* Ikon jam lebih lembut */
-}
-
-.tugas-card h3 i {
-    font-size: 14px;
-    color: white;
-    background: linear-gradient(135deg, #ff00ff, #5bf1e4);
-    border-radius: 50%;
-    padding: 5px;
-
-}
     </style>
 </head>
 
@@ -225,6 +221,7 @@
                 <span class="badge">2</span>
                 </span>Notifikasi</a>
             </li>
+            <li><a href="siswa-profil.html"><i class="fas fa-user"></i> Profil</a></li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>
@@ -236,42 +233,35 @@
             <p>Berikut adalah tugas yang harus kamu selesaikan</p>
         </header>
 
-        <section class="tugas-list">
+        <section class="tugas-list tugas-grid">
+  <div class="tugas-card">
+    <h3><i class="fas fa-calculator"></i> Matematika Dasar</h3>
+    <p>Guru: Pak Joko</p>
+    <p>Materi: Bilangan Operasi Hitung</p>
+    <p>Deadline: 10 Juni 2025</p>
+    <p>Status: <span class="belum">Belum Dikerjakan</span></p>
+    <a href="siswa-kerjakan-matematika.html" class="btn-detail">Kerjakan</a>
+  </div>
 
-            <div class="tugas-card">
-                <h3><i class="fas fa-calculator"></i>Matematika Dasar</h3>
-                <p>Guru: Pak Joko</p>
-                <p>Materi: Bilangan Operasi Hitung</p>
-                <p>Deadline: 10 Juni 2025</p>
-                <p>Status: <span class="belum">Belum Dikerjakan</span></p>
-               <a href="siswa-kerjakan-matematika.html" class="btn-detail">Kerjakan</a>
+  <div class="tugas-card">
+    <h3><i class="fas fa-atom"></i> Fisika Kelas 11</h3>
+    <p>Guru: Pak Tono</p>
+    <p>Materi: Hukum Newton</p>
+    <p>Deadline: 8 Juni 2025</p>
+    <p>Status: <span class="selesai">Sudah Dikumpulkan</span></p>
+    <a href="siswa-lihat-hasil.html" class="btn-detail">Lihat Hasil</a>
+  </div>
 
+  <div class="tugas-card">
+    <h3><i class="fas fa-vial"></i> Kimia Dasar</h3>
+    <p>Guru: Bu Lestari</p>
+    <p>Materi: Molekul</p>
+    <p>Deadline: 12 Juni 2025</p>
+    <p>Status: <span class="belum">Belum Dikerjakan</span></p>
+    <a href="kerjakan-kimia.html" class="btn-detail">Kerjakan</a>
+  </div>
+</section>
 
-            </div>
-
-            <div class="tugas-card">
-                <h3><i class="fas fa-atom"></i>Fisika Kelas 11</h3>
-                <p>Guru: Pak Tono</p>
-                <p>Materi: Hukum Newton</p>
-                <p>Deadline: 8 Juni 2025</p>
-                <p>Status: <span class="selesai">Sudah Dikumpulkan</span></p>
-               <a href="siswa-lihat-hasil.html" class="btn-detail">Lihat Hasil</a>
-
-
-            </div>
-
-            <div class="tugas-card">
-                <h3><i class="fas fa-vial"></i>Kimia Dasar</h3>
-                <p>Guru: Bu Lestari</p>
-                <p>Materi: Molekul</p>
-                <p>Deadline: 12 Juni 2025</p>
-                <p>Status: <span class="belum">Belum Dikerjakan</span></p>
-                <a href="kerjakan-kimia.html" class="btn-detail">Kerjakan</a>
-
-
-            </div>
-
-        </section>
     </main>
 
 </body>

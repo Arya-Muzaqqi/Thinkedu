@@ -110,10 +110,16 @@
 
     .aksi-baris {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       margin-top: 20px;
+      gap: 80px;
     }
+    .btn-group {
+  margin-left: auto;  /* dorong entire group ke kanan */
+  display: flex;
+  gap: 8px;           /* jarak antar tombol */
+}
+
 
     .kembali {
       text-decoration: none;
@@ -128,6 +134,8 @@
       cursor: pointer;
       user-select: none;
       font-family: 'Poppins';
+      outline: none;
+      border: none;
     }
 
     .btn-kirim-label:hover {
@@ -207,6 +215,7 @@
                 <span class="badge">2</span>
                 </span>Notifikasi</a>
             </li>
+            <li><a href="siswa-profil.html"><i class="fas fa-user"></i> Profil</a></li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </aside>
@@ -219,9 +228,9 @@
         </header>
 
   <div class="card">
-    <p><strong>Guru:</strong> Pak Joko</p>
-    <p><strong>Materi:</strong> Bilangan Operasi Hitung</p>
-    <p><strong>Deadline:</strong> 10 Juni 2025, 23:59 WIB</p>
+    <p>👨‍🏫 <strong>Guru:</strong> Pak Joko</p>
+    <p>📚 <strong>Materi:</strong> Bilangan Operasi Hitung</p>
+    <p>⏰ <strong>Deadline:</strong> 10 Juni 2025, 23:59 WIB</p>
     <p><strong>Deskripsi:</strong color="black"> Jika mengumpulkan tugas lebih dari yang sudah dijadwalkan, tugas akan diberi nilai 0.</p>
 
     <div class="file-tugas">
@@ -235,15 +244,18 @@
     </div>
 
     <div class="aksi-baris">
-      <a href="siswa-tugas.html" class="kembali">Kembali</a>
-      <button class="btn-kirim-label" id="btnKirim">Kirim</button>
-    </div>
-    </div>
+  <a href="siswa-tugas.html" class="kembali">Kembali</a>
+  <div class="btn-group">
+    <button id="btnDeadline" class="btn-kirim-label" style="background-color:#dc3545;">Terlambat</button>
+    <button id="btnKirim"    class="btn-kirim-label">Kirim</button>
+  </div>
+</div>
+
 
   <!-- Popup -->
  <div class="popup" id="popupBerhasil">
   <div class="popup-content">
-    <p>Tugas berhasil dikumpulkan ✅</p>
+    <p>Tugas berhasil dikumpulkan✅ Selamat kamu mendapatkan 40 poin.</p>
     <button class="btn-selesai" onclick="closePopup('popupBerhasil')">Selesai</button>
   </div>
 </div>
@@ -254,6 +266,14 @@
     <button class="btn-selesai" onclick="closePopup('popupGagal')">OK</button>
   </div>
 </div>
+
+<div class="popup" id="popupDeadline">
+  <div class="popup-content">
+    <p style="color: #e74c3c;">Gagal mengirim! Waktu pengumpulan sudah melewati deadline ⏰</p>
+    <button class="btn-selesai" onclick="closePopup('popupDeadline')">OK</button>
+  </div>
+</div>
+
 
 <script>
   const btnKirim = document.getElementById('btnKirim');
@@ -288,6 +308,13 @@
       showPopup(popupGagal);
     }
   });
+
+    const btnDeadline = document.getElementById('btnDeadline');
+const popupDeadline = document.getElementById('popupDeadline');
+
+btnDeadline.addEventListener('click', function() {
+  showPopup(popupDeadline);
+});
 
   
 

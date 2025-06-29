@@ -124,8 +124,9 @@
 </head>
 
 <body>
-
     <div class="container">
+        <!-- Popup Ganti Password via Email -->
+
         <div style="text-align: center; margin-bottom: 20px;">
             <img src="assets/images/logo.png" alt="Logo Thinkedu" style="width: 200px;">
         </div>
@@ -245,6 +246,24 @@
 
             window.location.href = "paket.html";
         });
+
+  function gantiPassword() {
+    const email = document.getElementById("emailGanti").value.trim();
+    const oldPass = document.getElementById("oldPassword").value.trim();
+    const newPass = document.getElementById("newPassword").value.trim();
+    const errorDiv = document.getElementById("changePassError");
+
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+
+    if (oldPass === newPass) {
+      errorDiv.textContent = "Sandi harus berbeda.";
+      errorDiv.style.display = "block";
+      return;
+    }
+
+  }
+
     </script>
 
 </body>

@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
 body {
     font-family: 'Poppins', sans-serif;
     color: #333;
@@ -77,8 +81,6 @@ body {
 .content {
     margin-left: 240px;
     flex-grow: 1;
-    padding: 40px;
-    background: #e3f2fd;
 }
 
 /* HEADER */
