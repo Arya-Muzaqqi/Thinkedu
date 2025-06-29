@@ -8,25 +8,81 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <style>
-body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f6f9;
-    }
-.sidebar {
-  position: fixed;   /* Kunci sidebar di kiri */
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;      /* Full tinggi layar */
-  background: white; /* Opsional: supaya sidebar solid */
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* opsional: efek bayangan */
-  box-sizing: border-box;
-}
 
- .card {
-  background-color: white;
+  body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+
+        .sidebar img.logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+        
+        .sidebar ul li a:hover {
+            background: #2196F3;
+            color: #fff;
+
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
+    }
+ 
+  .card{
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 20px;
@@ -34,12 +90,12 @@ body {
   width: 100%;            /* pastikan penuh kontainer */
   display: block;
   box-sizing: border-box; /* penting agar padding dihitung benar */
+  
 }
 .content {
-  margin-left: 250px;
+  margin-left: 240px;
   padding: 40px;
   min-height: 100vh;   /* agar full tinggi layar */
-  background-color: #e3f2fd; /* Latar biru muda */
   box-sizing: border-box;
 }
 .btn-detail {
@@ -49,12 +105,12 @@ body {
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 8px;
-  font-weight: bold;
 }
 .btn-detail:hover {
   background-color: #2980b9;
-  width: 100%;
+
 }
+
 .card ul {
   padding-left: 20px;
   margin: 10px 0;
@@ -64,6 +120,55 @@ body {
   margin-bottom: 8px;
 }
 
+.activity-list { /* Ubah ul menjadi class ini */
+            list-style: none; /* Hapus bullet default */
+            padding: 0;
+            margin: 0;
+        }
+
+        .activity-list li {
+            display: flex; /* Mengatur ikon dan teks sejajar */
+            align-items: center; /* Vertikal sejajar */
+            margin-bottom: 12px; /* Jarak antar item riwayat */
+            font-size: 1em;
+            color: #444;
+            padding: 8px 0; /* Padding vertikal untuk setiap item */
+            border-bottom: 1px dashed #f0f0f0; /* Garis putus-putus pemisah antar item */
+        }
+
+        .activity-list li:last-child {
+            border-bottom: none; /* Hapus border di item terakhir */
+            margin-bottom: 0;
+        }
+
+        .activity-list li i {
+            margin-right: 12px; /* Jarak ikon dari teks */
+            font-size: 1.2em; /* Ukuran ikon lebih besar */
+            width: 25px; /* Lebar tetap untuk ikon agar teks sejajar */
+            text-align: center;
+        }
+
+        /* Warna ikon berdasarkan jenis aktivitas/poin */
+        .activity-list li.point-gain i.fa-check-circle { /* Ikon untuk penambahan poin */
+            color: #28a745; /* Hijau untuk poin masuk */
+        }
+        .activity-list li.point-gain span.point-value {
+            color: #28a745; /* Warna poin hijau */
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        /* Styling untuk riwayat penukaran hadiah (pengurangan poin) */
+        .activity-list li.point-deduct i.fa-gift { /* Ikon untuk penukaran hadiah */
+            color: #ffc107; /* Oranye untuk penukaran */
+        }
+        .activity-list li.point-deduct span.point-value {
+            color: #dc3545; /* Warna poin merah untuk pengurangan */
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+
 </style>
     
 </head>
@@ -72,7 +177,7 @@ body {
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+      <img src="assets/images/logobaru.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -107,10 +212,11 @@ body {
 <!-- Riwayat Aktivitas -->
     <section class="card">
         <h3>Riwayat Aktivitas Poin</h3>
-            <ul>
-                <li>✅ Hadir di Kelas: +20 poin</li>
-                <li>✅ Mengumpulkan Tugas: +10 poin</li>
-                <li>✅ Membaca Buku Bacaan: +50 poin</li>
+            <ul clas="activity-list">
+                <li class="point-gain">
+                  <i class="fas fa-check-circle"></i> Hadir di Kelas: +20 poin</li>
+                <li class="point-gain"><i class="fas fa-check-circle"></i>Mengumpulkan Tugas: +10 poin</li>
+                <li class="point-gain"><i class="fas fa-check-circle"></i> Membaca Buku Bacaan: +50 poin</li>
             </ul>
     </section>
 
@@ -125,9 +231,9 @@ body {
 
     <section class="card">
   <h3>Riwayat Penukaran Hadiah</h3>
-  <ul>
-    <li>🎁 10/06/2025 - Tukar 50 poin: Voucher Diskon 10%</li>
-    <li>🎁 20/05/2025 - Tukar 30 poin: Pulpen Eksklusif</li>
+  <ul class="activity-list">
+    <li class="point-deduct">🎁 10/06/2025 - Tukar 50 poin: Voucher Diskon 10%</li>
+    <li class="point-deduct">🎁 20/05/2025 - Tukar 30 poin: Pulpen Eksklusif</li>
   </ul>
 </section>
 </main>

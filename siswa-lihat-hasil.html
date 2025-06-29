@@ -8,14 +8,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style>
 
+    body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+
+        .sidebar img.logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+        
+        .sidebar ul li a:hover {
+            background: #2196F3;
+            color: #fff;
+
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
+    }
     .container {
       max-width: 100%;
       width: 100%;
       background: white;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       font-size: 14px;
+      border-radius: 10px;
     }
 
     h3 {
@@ -25,54 +96,83 @@
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    width: 100%;
+    border-collapse: collapse; /* Menghilangkan spasi antar sel */
+    margin-top: 20px; /* Jarak dari elemen di atasnya */
+    font-size: 0.95em;
+    color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+   }
 
-    th, td {
-      padding: 12px 15px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+   table th {
+    background-color: #007bff; /* Warna biru untuk header */
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 
-    th {
-      background-color: #007bff;
-      color: white;
-    }
+   }
 
-    tr:hover {
-      background-color: #f1f1f1;
-    }
+  table td {
+    padding: 12px 15px;
+    text-align: left; /* Teks data rata kiri (kecuali kolom nilai) */
+    border-bottom: 1px solid #eee; /* Garis horizontal antar baris */
+    border-right: 1px solid #f8f8f8; /* Garis vertikal yang sangat halus antar kolom */
+}
 
-    .status-selesai {
-      color: green;
-      font-weight: bold;
-    }
+table td:last-child {
+    border-right: none; /* Hapus border kanan pada kolom terakhir */
+    text-align: center; /* Nilai rata tengah */
+}
 
-    .status-terlambat {
-      color: red;
-      font-weight: bold;
-    }
+/* Warna latar belakang baris bergantian (striped rows) */
+table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Warna abu-abu terang untuk baris genap */
+}
 
-    .nilai-bagus {
-      background-color: #d4edda;
-      color: #155724;
-      padding: 5px 10px;
-      border-radius: 5px;
+table tbody tr:hover {
+    background-color: #f0f0f0; /* Efek hover pada baris */
+}
+   table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Warna abu-abu terang untuk baris genap */
+  }
+
+  table tbody tr:hover {
+    background-color: #f0f0f0; /* Efek hover pada baris */
+  }
+
+  .nilai-badge{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px; /* Bentuk pil */
+    font-size: 0.85em;
+    font-weight: bold;
+    background-color: #e9ecef; /* Abu-abu terang */
+    color: #333;
+    text-align: center;
+    min-width: 40px; 
+}
+
+    .aksi-baris {
+    margin-top: 25px; /* Jarak lebih baik dari tabel */
+    text-align: right; /* Jika ingin tombolnya di kanan */
+}
+
+    .btn-kembali {
       display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(81, 132, 228); /* Warna abu-abu yang lebih solid */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
     }
-
-    .nilai-rendah {
-      background-color: #f8d7da;
-      color: #721c24;
-      padding: 5px 10px;
-      border-radius: 5px;
-      display: inline-block;
-    }
-    .kembali {
-      text-decoration: none;
-      color: #007bff;
-    }
+    .btn-kembali:hover {
+    background-color: #5a6268;
+}
   </style>
 </head>
 <body>
@@ -81,7 +181,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+      <img src="assets/images/logobaru.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -107,6 +207,7 @@
             <h1>Hasil Tugas Fisika</h1>
             <p>Hasil dari tugas yang telah dikerjakan oleh siswa, semoga hasilnya memuaskan !</p>
         </header>
+
         <div class="container">
   <h3>Hasil Tugas Fisika Hanni</h3>
   <table>
@@ -115,7 +216,6 @@
         <th>No</th>
         <th>Materi</th>
         <th>Tanggal Kumpul</th>
-        <th>Status</th>
         <th>Nilai</th>
       </tr>
     </thead>
@@ -124,27 +224,25 @@
         <td>1</td>
         <td>Gaya</td>
         <td> 23 Mei 2025</td>
-        <td class="status-selesai">Terkumpul</td>
-        <td><span class="nilai-bagus">90</span></td>
+
+        <td><span class="nilai-badge">90</span></td>
       </tr>
       <tr>
         <td>2</td>
         <td>Listrik dan Magnet</td>
         <td>3 Juni 2025</td>
-        <td class="status-terlambat">Terlambat</td>
-        <td><span class="nilai-rendah">60</span></td>
+        <td><span class="nilai-badge">60</span></td>
       </tr>
       <tr>
         <td>3</td>
         <td>Termodinamika</td>
         <td>8 Juni 2025</td>
-        <td class="status-selesai">Terkumpul</td>
-        <td><span class="nilai-bagus">85</span></td>
+        <td><span class="nilai-badge">85</span></td>
       </tr>
     </tbody>
   </table>
   <div class="aksi-baris">
-      <a href="siswa-tugas.html" class="kembali">Kembali</a>
+      <a href="siswa-tugas.html" class="btn-kembali">Kembali</a>
     </div>
 </div>
 

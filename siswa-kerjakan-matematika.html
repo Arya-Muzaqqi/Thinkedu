@@ -7,10 +7,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f0f0f0;
+     body.dashboard {
+            background: url('assets/images/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sidebar {
+          width: 240px;
+          height: 100vh; /* penuh tinggi layar */
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto; /* ini bikin bisa digulir */
+          padding: 20px 0; /* atas-bawah */
+
+        }
+
+        .sidebar img.logo {
+            width: 200px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0 0 20px 0 ;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+          text-decoration: none;
+          transition: background 0.3s, color 0.3s;
+          border-radius: 4px;
+          display: block;
+          padding: 8px 16px; /* ini yang bikin nyaman */
+        }
+        
+        .sidebar ul li a:hover {
+            background: #2196F3;
+            color: #fff;
+
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+
+    header h1 {
+      margin: 0 0 5px 0;
+    }
+
+    header p {
+      margin: 0 0 20px 0;
+      color: #555;
     }
 
     .card {
@@ -54,12 +121,13 @@
     }
 
     .btn-kirim-label {
-      padding: 10px 20px;
+      padding: 10px 25px;
       background-color: #28a745;
       color: white;
       border-radius: 5px;
       cursor: pointer;
       user-select: none;
+      font-family: 'Poppins';
     }
 
     .btn-kirim-label:hover {
@@ -123,7 +191,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <img src="assets/images/logo.png" alt="Logo Thinkedu" class="logo">
+      <img src="assets/images/logobaru.png" alt="Logo Thinkedu" class="logo">
         <ul>
             <li><a href="dashboard-siswa.html"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="siswa-kelas.html"><i class="fas fa-chalkboard-teacher"></i> Kelas</a></li>
@@ -150,15 +218,11 @@
             <p>Selesaikan tugas berikut dengan menggunakan rumus lengkap!</p>
         </header>
 
-
-  <!-- Checkbox Trigger (harus di awal) -->
-  <input type="checkbox" id="popup-check">
-
   <div class="card">
     <p><strong>Guru:</strong> Pak Joko</p>
     <p><strong>Materi:</strong> Bilangan Operasi Hitung</p>
     <p><strong>Deadline:</strong> 10 Juni 2025, 23:59 WIB</p>
-    <p><strong>Deskripsi:</strong> Jika mengumpulkan tugas lebih dari yang sudah dijadwalkan, tugas akan diberi nilai 0.</p>
+    <p><strong>Deskripsi:</strong color="black"> Jika mengumpulkan tugas lebih dari yang sudah dijadwalkan, tugas akan diberi nilai 0.</p>
 
     <div class="file-tugas">
       <span>📄 Tugas_Bilangan_Operasi_Hitung.pdf</span>
@@ -172,18 +236,62 @@
 
     <div class="aksi-baris">
       <a href="siswa-tugas.html" class="kembali">Kembali</a>
-      <label for="popup-check" class="btn-kirim-label">Kirim</label>
+      <button class="btn-kirim-label" id="btnKirim">Kirim</button>
     </div>
-  </div>
+    </div>
 
   <!-- Popup -->
-  <div class="popup">
-    <div class="popup-content">
-      <p>Tugas berhasil dikumpulkan ✅</p>
-      <label for="popup-check" class="btn-selesai">Selesai</label>
-    </div>
+ <div class="popup" id="popupBerhasil">
+  <div class="popup-content">
+    <p>Tugas berhasil dikumpulkan ✅</p>
+    <button class="btn-selesai" onclick="closePopup('popupBerhasil')">Selesai</button>
   </div>
+</div>
 
+  <div class="popup" id="popupGagal">
+  <div class="popup-content">
+    <p style="color: #e74c3c;">Gagal mengirim! Mohon pilih file terlebih dahulu ❌</p>
+    <button class="btn-selesai" onclick="closePopup('popupGagal')">OK</button>
+  </div>
+</div>
+
+<script>
+  const btnKirim = document.getElementById('btnKirim');
+  const uploadJawaban = document.getElementById('upload-jawaban');
+  const popupBerhasil = document.getElementById('popupBerhasil');
+  const popupGagal = document.getElementById('popupGagal');
+
+  // Fungsi untuk menampilkan pop-up
+  function showPopup(popupElement) {
+    popupElement.style.display = 'flex'; // Menggunakan flex untuk centering
+  }
+
+  // Fungsi untuk menyembunyikan pop-up
+  function closePopup(popupId) {
+    const popupElement = document.getElementById(popupId);
+    if (popupElement) {
+      popupElement.style.display = 'none';
+    }
+  }
+
+  // Event listener untuk tombol Kirim
+  btnKirim.addEventListener('click', function() {
+    if (uploadJawaban.files.length > 0) {
+      // Jika ada file yang dipilih, tampilkan pop-up berhasil
+      showPopup(popupBerhasil);
+      // Di sini Anda akan menambahkan logika untuk mengunggah file ke server
+      // Untuk tujuan demo, kita hanya menampilkan pop-up
+      // Setelah proses upload selesai (misalnya dengan fetch/axios), barulah tampilkan popupBerhasil
+      console.log("File siap diunggah:", uploadJawaban.files[0].name);
+    } else {
+      // Jika tidak ada file yang dipilih, tampilkan pop-up gagal
+      showPopup(popupGagal);
+    }
+  });
+
+  
+
+</script>
 </body>
 </html>
 
